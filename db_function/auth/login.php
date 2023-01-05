@@ -1,6 +1,6 @@
 <?php
 
-include_once('../koneksi.php');
+include '../koneksi.php';
 
 switch ($request['login']) {
     case 'admin':

@@ -1,9 +1,9 @@
 <?php
 
-require_once('../vendor/autoload.php');
+require __DIR__ . '/vendor/autoload.php';
 
 // Looing for .env at the root directory
-$dotenv = Dotenv\Dotenv::createImmutable('../');
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
 $dotenv->load();
 
 
