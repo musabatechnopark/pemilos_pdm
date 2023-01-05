@@ -1,11 +1,9 @@
 <?php
 
-require __DIR__ . '/vendor/autoload.php';
+require_once(__DIR__ . '/../vendor/autoload.php');
 
-// Looing for .env at the root directory
-$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
 $dotenv->load();
-
 
 define('HOST', $_ENV['DB_HOST']);
 define('USERNAME', $_ENV['DB_USERNAME']);

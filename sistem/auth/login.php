@@ -1,6 +1,6 @@
 <?php
 
-include '../koneksi.php';
+include '../../database/koneksi.php';
 
 switch ($request['login']) {
     case 'admin':
