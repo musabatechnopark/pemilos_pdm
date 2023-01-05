@@ -1,6 +1,6 @@
 <?php
 
-$ENV = parse_ini_file('../.env')['DB_PASSWORD'];
+$ENV = parse_ini_file('../.env');
 
 define("HOST", $ENV['DB_HOST']);
 define("USER", $ENV['DB_USERNAME']);
