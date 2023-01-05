@@ -1,10 +1,21 @@
 <?php
 
-$ENV = parse_ini_file('../.env');
+require_once realpath(__DIR__ . '/vendor/autoload.php');
 
-define("HOST", $ENV['DB_HOST']);
-define("USER", $ENV['DB_USERNAME']);
-define("PASS", $ENV['DB_PASSWORD']);
-define("DB", $ENV['DB_DATABASE']);
+// Looing for .env at the root directory
+$dotenv = Dotenv\Dotenv::createImmutable(__DIR__);
+$dotenv->load();
 
-$db = new mysqli(HOST, USER, PASS, DB) or die("Couldn't connect to database");
+
+define('HOST', $_ENV['DB_HOST']);
+define('USERNAME', $_ENV['DB_USERNAME']);
+define('PASSWORD', $_ENV['DB_PASSWORD']);
+define('DATABASE', $_ENV['DB_DATABASE']);
+
+// $conn = mysqli_connect($host, $username, $password, $database) or die("Couldn't connect to database");
+
+if ($_GET) :
+    $request = $_GET;
+elseif ($_POST) :
+    $request = $_POST;
+endif;
