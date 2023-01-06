@@ -1,5 +1,5 @@
 <?php
-
+session_start();
 require_once(__DIR__ . '/../vendor/autoload.php');
 
 $dotenv = Dotenv\Dotenv::createImmutable(__DIR__ . '/../');
@@ -10,10 +10,6 @@ define('USERNAME', $_ENV['DB_USERNAME']);
 define('PASSWORD', $_ENV['DB_PASSWORD']);
 define('DATABASE', $_ENV['DB_DATABASE']);
 
-// $conn = mysqli_connect($host, $username, $password, $database) or die("Couldn't connect to database");
+$db = new mysqli(HOST, USERNAME, PASSWORD, DATABASE);
 
-if ($_GET) :
-    $request = $_GET;
-elseif ($_POST) :
-    $request = $_POST;
-endif;
+include_once(__DIR__ . '/function.php');
