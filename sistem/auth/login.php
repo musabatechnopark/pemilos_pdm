@@ -21,7 +21,7 @@ switch ($request['login']) {
             }
         } catch (\Throwable $th) {
             //throw $th;
-            echo "something went wrong";
+            return $_SESSION['error_login_catch'] = 'Somthing worng' . redirect_back();
         }
         break;
     case 'user':
@@ -35,13 +35,21 @@ switch ($request['login']) {
             $sql = mysqli_query($db, $query);
 
             if (mysqli_fetch_row($sql) > 0) {
-                echo "login successful";
+
+                $query = "SELECT * FROM tb_pengguna WHERE nbm = '$nbm'";
+                $sql = mysqli_query($db, $query);
+                $data = mysqli_fetch_assoc($sql);
+
+                $_SESSION['nama'] = strtoupper($data['nama']);
+                $_SESSION['cabang'] = strtoupper($data['cabang']);
+
+                return_url('../../user/welcome.php');
             } else {
                 return $_SESSION['error_login'] = 'nbm atau password salah' . redirect_back();
             }
         } catch (\Throwable $th) {
             //throw $th;
-            echo "something went wrong";
+            return $_SESSION['error_login_catch'] = 'Somthing worng' . redirect_back();
         }
         break;
     default:

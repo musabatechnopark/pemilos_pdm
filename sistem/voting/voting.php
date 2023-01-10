@@ -1,7 +1,7 @@
 <?php
 include '../../database/koneksi.php';
 
-$nbm = '1234 1234 1234567';
+$nbm = '125';
 
 // $hasil = query("SELECT * FROM tb_pengguna WHERE nbm = '$nbm");
 
@@ -13,6 +13,8 @@ $total = count($request);
 $voting = $request;
 
 foreach ($voting as $key => $value) {
-    echo $nbm . ' ' . $key . " = " . $value . "<br>";
+    if ($value) {
+        echo $nbm . ' ' . $key . " = " . $value . "<br>";
+    }
 }
 // }

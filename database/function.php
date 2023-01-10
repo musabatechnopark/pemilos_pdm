@@ -24,6 +24,11 @@ function redirect_back()
     }
 }
 
+function return_url($url)
+{
+    header('Location: ' . $url);
+}
+
 function query($query)
 {
     global $db;
