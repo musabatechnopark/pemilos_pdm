@@ -15,6 +15,11 @@ switch ($request['login']) {
             $sql = mysqli_query($db, $query);
 
             if (mysqli_fetch_row($sql) > 0) {
+
+                $_SESSION['role'] = 'admin';
+                $_SESSION['login'] = true;
+                $_SESSION['username'] = $username;
+
                 echo "login successful";
             } else {
                 return $_SESSION['error_login'] = 'nbm atau password salah' . redirect_back();
@@ -41,6 +46,9 @@ switch ($request['login']) {
                 $data = mysqli_fetch_assoc($sql);
 
                 $_SESSION['nama'] = strtoupper($data['nama']);
+                $_SESSION['nbm'] = $nbm;
+                $_SESSION['login'] = true;
+                $_SESSION['role'] = 'user';
                 $_SESSION['cabang'] = strtoupper($data['cabang']);
 
                 return_url('../../user/welcome.php');
@@ -53,5 +61,5 @@ switch ($request['login']) {
         }
         break;
     default:
-        echo 'plrase check your login request';
+        redirect_back();
 }

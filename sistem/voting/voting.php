@@ -1,20 +1,10 @@
 <?php
 include '../../database/koneksi.php';
 
-$nbm = '125';
+if (empty($_SESSION['login'])) return $_SESSION['error_logut'] = 'You not login' . redirect_back();
 
-// $hasil = query("SELECT * FROM tb_pengguna WHERE nbm = '$nbm");
-
-// if (count($hasil) == 1) {
-
-// $id = $hasil[0]['id'];
-$total = count($request);
-
-$voting = $request;
-
-foreach ($voting as $key => $value) {
-    if ($value) {
-        echo $nbm . ' ' . $key . " = " . $value . "<br>";
-    }
+switch ($request['vating']) {
+    case 'true':
+        
+        break;
 }
-// }

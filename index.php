@@ -9,6 +9,18 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
 </head>
 <style>
+    /* Chrome, Safari, Edge, Opera */
+    input::-webkit-outer-spin-button,
+    input::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    /* Firefox */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+
     body {
         background-image: url("assets/img/Vector\ 3.jpg");
         background-repeat: no-repeat;
@@ -104,7 +116,7 @@
                         <div class="input-group mb-4">
                             <span class="input-group-text icon-name"><i class="bi bi-person-fill"></i></span>
                             <div class="form-floating">
-                                <input type="text" id="form1Example13" class="form-control form-control-lg name <?php if (@$_SESSION['error_login']) : ?> is-invalid <?php endif; ?>" name="nbm" placeholder="NBM" required autofocus />
+                                <input type="number" id="form1Example13" class="form-control form-control-lg name <?php if (@$_SESSION['error_login']) : ?> is-invalid <?php endif; ?>" name="nbm" placeholder="NBM" required autofocus />
                                 <label for="form1Example13">NBM</label>
                             </div>
                         </div>
