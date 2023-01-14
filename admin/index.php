@@ -47,99 +47,38 @@ require 'sidebar.php';
                         </h5>
 
                         <!-- Line Chart -->
-                        <div id="reportsChart"></div>
+                        <canvas id="barChart" style="max-height: 400px;"></canvas>
+
 
                         <script>
-                            document.addEventListener(
-                                "DOMContentLoaded",
-                                () => {
-                                    new ApexCharts(
-                                        document.querySelector(
-                                            "#reportsChart"
-                                        ), {
-                                            series: [{
-                                                    name: "Sales",
-                                                    data: [
-                                                        31, 40,
-                                                        28, 51,
-                                                        42, 82,
-                                                        56,
-                                                    ],
-                                                },
-                                                {
-                                                    name: "Revenue",
-                                                    data: [
-                                                        11, 32,
-                                                        45, 32,
-                                                        34, 52,
-                                                        41,
-                                                    ],
-                                                },
-                                                {
-                                                    name: "Customers",
-                                                    data: [
-                                                        15, 11,
-                                                        32, 18,
-                                                        9, 24,
-                                                        11,
-                                                    ],
-                                                },
+                            document.addEventListener("DOMContentLoaded", () => {
+                                new Chart(document.querySelector('#barChart'), {
+                                    type: 'bar',
+                                    data: {
+                                        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'February', 'March', 'April', 'May', 'June', 'July'],
+                                        datasets: [{
+                                            label: 'Bar Chart',
+                                            data: [65, 59, 80, 81, 56, 55, 40, 59, 80, 81, 56, 55, 40],
+                                            backgroundColor: [
+
+                                                'rgba(75, 192, 192, 0.2)'
                                             ],
-                                            chart: {
-                                                height: 350,
-                                                type: "area",
-                                                toolbar: {
-                                                    show: false,
-                                                },
-                                            },
-                                            markers: {
-                                                size: 4,
-                                            },
-                                            colors: [
-                                                "#4154f1",
-                                                "#2eca6a",
-                                                "#ff771d",
+                                            borderColor: [
+
+                                                'rgb(75, 192, 192)'
                                             ],
-                                            fill: {
-                                                type: "gradient",
-                                                gradient: {
-                                                    shadeIntensity: 1,
-                                                    opacityFrom: 0.3,
-                                                    opacityTo: 0.4,
-                                                    stops: [
-                                                        0, 90,
-                                                        100,
-                                                    ],
-                                                },
-                                            },
-                                            dataLabels: {
-                                                enabled: false,
-                                            },
-                                            stroke: {
-                                                curve: "smooth",
-                                                width: 2,
-                                            },
-                                            xaxis: {
-                                                type: "datetime",
-                                                categories: [
-                                                    "2018-09-19T00:00:00.000Z",
-                                                    "2018-09-19T01:30:00.000Z",
-                                                    "2018-09-19T02:30:00.000Z",
-                                                    "2018-09-19T03:30:00.000Z",
-                                                    "2018-09-19T04:30:00.000Z",
-                                                    "2018-09-19T05:30:00.000Z",
-                                                    "2018-09-19T06:30:00.000Z",
-                                                ],
-                                            },
-                                            tooltip: {
-                                                x: {
-                                                    format: "dd/MM/yy HH:mm",
-                                                },
-                                            },
+                                            borderWidth: 1
+                                        }]
+                                    },
+                                    options: {
+                                        scales: {
+                                            y: {
+                                                beginAtZero: true
+                                            }
                                         }
-                                    ).render();
-                                }
-                            );
+                                    }
+                                });
+                            });
                         </script>
                         <!-- End Line Chart -->
                     </div>
@@ -147,6 +86,59 @@ require 'sidebar.php';
             </div>
             <!-- End Reports -->
 
+            <div class="col-12">
+                <div class="card">
+                    <div class="card-body">
+                        <h5 class="card-title">Table with hoverable rows</h5>
+
+                        <!-- Table with hoverable rows -->
+                        <table class="table table-hover">
+                            <thead>
+                                <tr>
+                                    <th scope="col">#</th>
+                                    <th scope="col">Nama</th>
+                                    <th scope="col">Asal Cabang</th>
+                                    <th scope="col">Jumlah</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <th scope="row">1</th>
+                                    <td>Brandon Jacob</td>
+                                    <td>Designer</td>
+                                    <td>28</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">2</th>
+                                    <td>Bridie Kessler</td>
+                                    <td>Developer</td>
+                                    <td>35</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">3</th>
+                                    <td>Ashleigh Langosh</td>
+                                    <td>Finance</td>
+                                    <td>45</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">4</th>
+                                    <td>Angus Grady</td>
+                                    <td>HR</td>
+                                    <td>34</td>
+                                </tr>
+                                <tr>
+                                    <th scope="row">5</th>
+                                    <td>Raheem Lehner</td>
+                                    <td>Dynamic Division Officer</td>
+                                    <td>47</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                        <!-- End Table with hoverable rows -->
+
+                    </div>
+                </div>
+            </div>
         </div>
     </section>
 </main>
