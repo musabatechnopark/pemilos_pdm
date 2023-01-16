@@ -71,6 +71,10 @@ include 'sidebar.php';
                                         }]
                                     },
                                     options: {
+                                        animation: {
+                                            duration: 2000, // durasi animasi dalam milisecond
+                                            easing: 'easeOutQuart' // jenis easing animasi
+                                        },
                                         scales: {
                                             y: {
                                                 beginAtZero: true
