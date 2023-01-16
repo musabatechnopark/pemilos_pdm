@@ -1,7 +1,8 @@
 <?php
-require 'header.php';
-require 'sidebar.php';
+include 'header.php';
+include 'sidebar.php';
 ?>
+<script src="https://code.jquery.com/jquery-3.5.1.js" integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc=" crossorigin="anonymous"></script>
 <main id="main" class="main">
     <div class="pagetitle">
         <h1>Dashboard</h1>
@@ -43,7 +44,7 @@ require 'sidebar.php';
 
                     <div class="card-body">
                         <h5 class="card-title">
-                            Reports <span>/Today</span>
+                            Leadeerboard Suara
                         </h5>
 
                         <!-- Line Chart -->
@@ -52,19 +53,18 @@ require 'sidebar.php';
 
                         <script>
                             document.addEventListener("DOMContentLoaded", () => {
-                                new Chart(document.querySelector('#barChart'), {
+                                var ctx = document.getElementById('barChart').getContext('2d');
+                                var chart = new Chart(ctx, {
                                     type: 'bar',
                                     data: {
-                                        labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'February', 'March', 'April', 'May', 'June', 'July'],
+                                        labels: [],
                                         datasets: [{
                                             label: 'Bar Chart',
-                                            data: [65, 59, 80, 81, 56, 55, 40, 59, 80, 81, 56, 55, 40],
+                                            data: [],
                                             backgroundColor: [
-
                                                 'rgba(75, 192, 192, 0.2)'
                                             ],
                                             borderColor: [
-
                                                 'rgb(75, 192, 192)'
                                             ],
                                             borderWidth: 1
@@ -78,6 +78,26 @@ require 'sidebar.php';
                                         }
                                     }
                                 });
+
+                                setInterval(async function() {
+                                    const api = await fetch('http://127.0.0.1/pemilos_pdm/sistem/admin/dashboard.php?type=json')
+                                    const {
+                                        data
+                                    } = await api.json()
+                                    var hasil = []
+                                    var suara = []
+                                    for (let i = 0; i < data.length; i++) {
+                                        hasil.push(data[i].nama)
+                                        suara.push(data[i].total)
+                                    }
+
+                                    // console.log(hasil)
+                                    // console.log(suara)
+
+                                    chart.data.labels = hasil
+                                    chart.data.datasets[0].data = suara
+                                    chart.update();
+                                }, 1000);
                             });
                         </script>
                         <!-- End Line Chart -->
@@ -95,43 +115,14 @@ require 'sidebar.php';
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th scope="col">#</th>
+                                    <th scope="col">No</th>
                                     <th scope="col">Nama</th>
-                                    <th scope="col">Asal Cabang</th>
-                                    <th scope="col">Jumlah</th>
+                                    <th scope="col">Nomer Calon</th>
+                                    <th scope="col">Jumlah Suara</th>
                                 </tr>
                             </thead>
                             <tbody>
-                                <tr>
-                                    <th scope="row">1</th>
-                                    <td>Brandon Jacob</td>
-                                    <td>Designer</td>
-                                    <td>28</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">2</th>
-                                    <td>Bridie Kessler</td>
-                                    <td>Developer</td>
-                                    <td>35</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">3</th>
-                                    <td>Ashleigh Langosh</td>
-                                    <td>Finance</td>
-                                    <td>45</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">4</th>
-                                    <td>Angus Grady</td>
-                                    <td>HR</td>
-                                    <td>34</td>
-                                </tr>
-                                <tr>
-                                    <th scope="row">5</th>
-                                    <td>Raheem Lehner</td>
-                                    <td>Dynamic Division Officer</td>
-                                    <td>47</td>
-                                </tr>
+
                             </tbody>
                         </table>
                         <!-- End Table with hoverable rows -->
@@ -142,5 +133,22 @@ require 'sidebar.php';
         </div>
     </section>
 </main>
+<script>
+    $(document).ready(function() {
+        setInterval(function() {
+            getData()
+        }, 1000)
+    })
+
+    function getData() {
+        $.ajax({
+            url: 'http://127.0.0.1/pemilos_pdm/sistem/admin/dashboard.php?type=html',
+            type: 'GET',
+            success: function(response) {
+                $("tbody").html(response);
+            }
+        })
+    }
+</script>
 <!-- End #main -->
-<?php require 'footer.php'; ?>
+<?php include 'footer.php'; ?>
