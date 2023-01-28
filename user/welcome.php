@@ -98,14 +98,13 @@
                         <h2 class="fw-bold kuning"><?= $_SESSION['nama']; ?></h2>
                         <h2 class="fw-bold ijo mb-5">PCM <?= $_SESSION['cabang']; ?></h2>
 
-                        <a class="btn btn-primary mb-2" href="pilih.html">MULAI</a> <br>
+                        <a class="btn btn-primary mb-2" href="pilih.php">MULAI</a> <br>
                         <a class="btn btn-outline" href="../index.php">KELUAR</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
-    <!-- <?php unset($_SESSION['nama'], $_SESSION['cabang']); ?> -->
     <script>
         const Name = document.querySelector(".name");
         const naMe = document.querySelector(".icon-name");
