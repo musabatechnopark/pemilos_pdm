@@ -1,6 +1,6 @@
 <?php
 include 'database/koneksi.php';
-if (!$_SESSION['login']) : ?>
+if (@!$_SESSION['login']) : ?>
 
     <!DOCTYPE html>
     <html lang="en">
@@ -103,11 +103,10 @@ if (!$_SESSION['login']) : ?>
                         </div>
 
                         <?php
-                        session_start();
                         if (@$_SESSION['error_login'] || @$_SESSION['error_login_catch']) : ?>
                             <div style="margin-left: -40px;">
                                 <ul class="text-danger"> Error :
-                                    <li class="ms-4"><?= $_SESSION['error_login'] || @$_SESSION['error_login_catch']; ?></li>
+                                    <li class="ms-4"><?= $_SESSION['error_login'], @$_SESSION['error_login_catch']; ?></li>
                                 </ul>
                             </div>
                         <?php

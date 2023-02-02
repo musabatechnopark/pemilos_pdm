@@ -99,7 +99,7 @@
                         <h2 class="fw-bold ijo mb-5">PCM <?= $_SESSION['cabang']; ?></h2>
 
                         <a class="btn btn-primary mb-2" href="pilih.php">MULAI</a> <br>
-                        <a class="btn btn-outline" href="../index.php">KELUAR</a>
+                        <a class="btn btn-outline" href="../sistem/auth/logout.php">KELUAR</a>
                     </div>
                 </div>
             </div>

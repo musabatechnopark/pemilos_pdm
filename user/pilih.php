@@ -29,6 +29,11 @@ if ($_SESSION['login']) : ?>
             background-color: #076132;
         }
 
+        .active {
+            color: white;
+            background-color: #076132;
+        }
+
         .btn-primary {
             border-color: #076132;
             background-color: #076132;
@@ -45,6 +50,13 @@ if ($_SESSION['login']) : ?>
         }
 
         .btn-primary:active {
+            background-color: #118549 !important;
+            box-shadow: none;
+            border-color: #118549;
+
+        }
+
+        .btn-primary:disabled {
             background-color: #118549 !important;
             box-shadow: none;
             border-color: #118549;
@@ -82,7 +94,7 @@ if ($_SESSION['login']) : ?>
             <h2 class="mt-5 ijo">Pilihlah 13 dari 80 kandidat di bawah</h2>
 
             <!-- awal tempat pilih -->
-            <div class="row row-cols-1 row-cols-md-4 g-4 mt-2">
+            <div id="daftar" class="row row-cols-1 row-cols-md-4 g-4 mt-2">
 
                 <?php
                 $sql = "SELECT * FROM tb_calon";
@@ -92,14 +104,15 @@ if ($_SESSION['login']) : ?>
                 ?>
                     <!-- card pilihan -->
                     <div class="col">
-                        <div class="card pilih">
+                        <div class="card pilih" id="co<?= $row['id']; ?>">
                             <div class="card-body">
                                 <table>
+                                    <input type="hidden" id="<?= $row['id']; ?>">
                                     <tr>
-                                        <th rowspan="2" class="px-3">
-                                            <h2><?= $row['calon_no']; ?></h2>
+                                        <th rowspan=" 2" class="px-3">
+                                            <h2><?= trim($row['calon_no'], "CALON "); ?></h2>
                                         </th>
-                                        <td class="ps-3 fw-bold"><a class="stretched-link" href=""></a><?= $row['nama']; ?></td>
+                                        <td class="ps-3 fw-bold"><button onclick="tc<?= $row['id'] ?>()" class="m-0 p-0 btn stretched-link kandidat"></button><?= $row['nama']; ?></td>
                                     </tr>
                                     <tr>
                                         <td class="ps-3 fw-bold"><?= $row['nbm']; ?></td>
@@ -114,58 +127,131 @@ if ($_SESSION['login']) : ?>
             </div>
 
             <div class="d-grid col-2 ms-auto mt-3">
-                <p class="ijo fw-bold text-end">Anda sudah memilih 6/13</p>
-                <button class="btn btn-primary" type="button" data-bs-toggle="modal" data-bs-target="#pilihmodal">Konfirmasi</button>
+                <p class="ijo fw-bold text-end">Anda sudah memilih <span id="total-pilih">0</span>/13</p>
+                <button class="btn btn-primary" disabled id="sub" type="button" data-bs-toggle="modal" data-bs-target="#pilihmodal">Konfirmasi</button>
             </div>
 
-            <!-- Modal -->
-            <div class="modal fade" id="pilihmodal" tabindex="-1" aria-labelledby="pilihmodalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl">
+            <!-- modal error -->
+            <div id="kakean" class="modal" tabindex="-1">
+                <div class="modal-dialog">
                     <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title">Modal title</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
                         <div class="modal-body">
-                            <!-- header -->
-                            <div class="text-center ijo">
-                                <h2>13 Calon Pilihan Anda</h2>
-                                <h5>Apakah anda yakin akan memilih kandidat kandidat berikut?</h5>
-                            </div>
-
-                            <!-- pilihan pemilih -->
-                            <div class="d-grid col-12 mt-3">
-                                <div class="card card-modal">
-                                    <div class="card-body">
-                                        <div class="row">
-                                            <span class="col-md-4 px-5 fw-bold">1</span>
-                                            <span class="col-md-4 px-5 fw-bold">Alip</span>
-                                            <span class="col-md-4 px-5 fw-bold">09808</span>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-
-                            <!-- footer -->
-                            <div class="row mt-3 ms-auto">
-                                <div class="col-md-4"></div>
-                                <div class="col-md-2">
-                                    <button class="btn btn-outline" data-bs-dismiss="modal">batal</button>
-                                </div>
-                                <div class=" col-md-2">
-                                    <button class="btn btn-primary">lanjut</button>
-                                </div>
-                                <div class="col-md-4"></div>
-
-                            </div>
+                            <p>Modal body text goes here.</p>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                            <button type="button" class="btn btn-primary">Save changes</button>
                         </div>
                     </div>
                 </div>
             </div>
 
+            <?php
+
+            $sql = "SELECT * FROM tb_calon WHERE nama = $terpilih ";
+            $query = mysqli_query($db, $sql);
+
+            while ($row = mysqli_fetch_assoc($query)) :
+
+            ?>
+
+                <!-- Modal -->
+                <div class="modal fade" id="pilihmodal" tabindex="-1" aria-labelledby="pilihmodalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <!-- header -->
+                                <div class="text-center ijo">
+                                    <h2>13 Calon Pilihan Anda</h2>
+                                    <h5>Apakah anda yakin akan memilih kandidat kandidat berikut?</h5>
+                                </div>
+
+                                <!-- pilihan pemilih -->
+                                <div class="d-grid col-12 mt-3">
+                                    <div class="card card-modal">
+                                        <div class="card-body">
+                                            <div class="row">
+                                                <span class="col-md-6 px-5 fw-bold"><?= $row['calon_no']; ?></span>
+                                                <span class="col-md-6 px-5 fw-bold">Alip</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <!-- footer -->
+                                <div class="row mt-3 ms-auto">
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-2">
+                                        <button class="btn btn-outline" data-bs-dismiss="modal">batal</button>
+                                    </div>
+                                    <div class=" col-md-2">
+                                        <button class="btn btn-primary">lanjut</button>
+                                    </div>
+                                    <div class="col-md-4"></div>
+
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            <?php endwhile; ?>
+
 
 
         </div>
+        <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+        <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
+        <?php
+        $sql = "SELECT * FROM tb_calon";
+        $query = mysqli_query($db, $sql);
+        while ($row = mysqli_fetch_assoc($query)) :
+        ?>
+            <script>
+                function tc<?= $row['id'] ?>() {
+                    var a = document.getElementById("<?= $row['id'] ?>");
+                    var b = document.getElementById("co<?= $row['id']; ?>");
+                    var element = document.getElementById("total-pilih");
+                    var number = parseInt(element.textContent);
+
+                    if (a.value == 0) {
+                        if (number >= 1) {
+                            return Swal.fire('anda sudah memilih 13')
+                        } else {
+                            b.classList.add("active");
+                            element.innerHTML = Number(number) + 1;
+                            a.value = Number(a.value) + 1
+                        }
+                    } else {
+                        b.classList.remove("active");
+                        element.innerHTML = Number(number) - 1;
+                        a.value = Number(a.value) - 1
+                    }
+
+                    var div = document.getElementById("daftar");
+                    var buttons = div.getElementsByTagName("button");
+                    var inputs = div.getElementsByTagName("input");
+
+                    var sub = document.getElementById("sub");
+
+                    if (number == 0) {
+                        sub.disabled = false;
+                    } else {
+                        sub.disabled = true;
+                    }
+                }
+
+                
+            </script>
+        <?php endwhile; ?>
     </body>
 
     </html>
 <?php else :
-    return_url('index.php');
+    return_url('../index.php');
 endif; ?>
