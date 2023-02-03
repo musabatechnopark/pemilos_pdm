@@ -6,87 +6,13 @@ if ($_SESSION['login']) : ?>
     <html lang="en">
 
     <head>
+        <link rel="stylesheet" href="../assets/css/user.css">
         <meta charset="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>Bootstrap demo</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
     </head>
-    <style>
-        .ijo {
-            color: #076132;
-        }
-
-        .pilih {
-            border-color: #076132 !important;
-            border-radius: 20px;
-            border-width: 2px;
-            color: #076132;
-        }
-
-        .pilih:hover {
-            color: white;
-            background-color: #076132;
-        }
-
-        .active {
-            color: white;
-            background-color: #076132;
-        }
-
-        .btn-primary {
-            border-color: #076132;
-            background-color: #076132;
-            width: 100%;
-            font-weight: 700;
-            border-width: 3px !important;
-        }
-
-        .btn-primary:hover {
-            background-color: #118549;
-            box-shadow: none;
-            border-color: #118549;
-
-        }
-
-        .btn-primary:active {
-            background-color: #118549 !important;
-            box-shadow: none;
-            border-color: #118549;
-
-        }
-
-        .btn-primary:disabled {
-            background-color: #118549 !important;
-            box-shadow: none;
-            border-color: #118549;
-
-        }
-
-        .btn-outline {
-            border-color: #076132;
-            color: #076132;
-            width: 100%;
-            font-weight: 700;
-            border-width: 3px !important;
-        }
-
-        .card-modal {
-            background-color: #076132;
-            border: none;
-            color: white;
-        }
-
-        .btn-outline:hover {
-            background-color: #076132;
-            color: white;
-            box-shadow: none;
-        }
-
-        .diem {
-            cursor: default;
-        }
-    </style>
 
     <body>
         <div class="container">
@@ -128,28 +54,9 @@ if ($_SESSION['login']) : ?>
 
                 </div>
 
-                <div class="d-grid col-2 ms-auto mt-3">
+                <div class="d-grid col-2 mb-5 ms-auto mt-3">
                     <p class="ijo fw-bold text-end">Anda sudah memilih <span id="total-pilih">0</span>/13</p>
-                    <button class="btn btn-primary" disabled id="sub" type="button" onclick="selectdata()" data-bs-toggle="modal" data-bs-target="#pilihmodal">Konfirmasi</button>
-                </div>
-
-                <!-- modal error -->
-                <div id="kakean" class="modal" tabindex="-1">
-                    <div class="modal-dialog">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h5 class="modal-title">Modal title</h5>
-                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                            </div>
-                            <div class="modal-body">
-                                <p>Modal body text goes here.</p>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                <button type="button" class="btn btn-primary">Save changes</button>
-                            </div>
-                        </div>
-                    </div>
+                    <button class="btn btn-primary lebar" disabled id="sub" type="button" onclick="selectdata()" data-bs-toggle="modal" data-bs-target="#pilihmodal">Konfirmasi</button>
                 </div>
 
                 <!-- Modal -->
@@ -182,10 +89,10 @@ if ($_SESSION['login']) : ?>
                                 <div class="row mt-3 ms-auto">
                                     <div class="col-md-4"></div>
                                     <div class="col-md-2">
-                                        <button type="button" class="btn btn-outline" data-bs-dismiss="modal">batal</button>
+                                        <button type="button" class="btn btn-outline w-100" data-bs-dismiss="modal">batal</button>
                                     </div>
                                     <div class=" col-md-2">
-                                        <button type="submit" name="voting" value="true" class="btn btn-primary">lanjut</button>
+                                        <button type="submit" name="voting" value="true" class="btn btn-primary w-100">lanjut</button>
                                     </div>
                                     <div class="col-md-4"></div>
 

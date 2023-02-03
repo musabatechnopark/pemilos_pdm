@@ -3,90 +3,15 @@
 <html lang="en">
 
 <head>
+        <link rel="stylesheet" href="../assets/css/user.css">
+
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <title>Bootstrap demo</title>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-GLhlTQ8iRABdZLl6O3oVMWSktQOp6b7In1Zl3/Jr59b6EGGoI1aFkw7cmDA6j6gD" crossorigin="anonymous" />
 </head>
-<style>
-    body {
-        background-image: url("img/Vector\ 3.jpg");
-        background-repeat: no-repeat;
-        background-size: 100% 100%;
-    }
 
-    .ijo {
-        color: #076132;
-    }
-
-    .kuning {
-        color: #BE810A;
-    }
-
-    .btn-primary {
-        background-color: #076132;
-        width: 40%;
-        font-weight: 700;
-        border: none;
-    }
-
-    .btn-primary:hover {
-        background-color: #118549;
-        box-shadow: none;
-    }
-
-    .btn-outline {
-        border-color: #076132;
-        color: #076132;
-        width: 40%;
-        font-weight: 700;
-        border-width: 3px !important;
-
-    }
-
-    .btn-outline:hover {
-        background-color: #076132;
-        color: white;
-        box-shadow: none;
-    }
-
-    .form-control {
-        display: block;
-        width: 100%;
-        font-size: 1rem;
-        font-weight: 400;
-        line-height: 1.5;
-        border-color: #a5a5a5 !important;
-        border-style: solid !important;
-        border-width: 0 0 3px 0 !important;
-        padding: 0px !important;
-        height: auto;
-        border-radius: 0;
-        background-clip: padding-box;
-    }
-
-    .form-control:focus {
-        border-color: #076132 !important;
-        outline: 0;
-        box-shadow: none;
-    }
-
-    .input-group-text {
-        line-height: 1.5;
-        border-color: #a5a5a5;
-        color: #a5a5a5;
-        border-width: 0 0 3px 0 !important;
-        height: auto;
-        border-radius: 0;
-        background: none;
-    }
-
-    .input-group-text.focus {
-        border-color: #076132 !important;
-        color: #076132 !important;
-    }
-</style>
 
 <body>
     <section class="vh-100">
@@ -100,7 +25,7 @@
 
                         <p class="ijo">silahkan keluar</p>
 
-                        <a class="btn btn-outline" href="../sistem/auth/logout.php">KELUAR</a>
+                        <a class="btn btn-outline sedang" href="../sistem/auth/logout.php">KELUAR</a>
                     </div>
                 </div>
             </div>
