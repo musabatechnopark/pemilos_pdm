@@ -108,14 +108,15 @@ if ($_SESSION['login']) : ?>
                             <div class="card-body">
                                 <table>
                                     <input type="hidden" id="<?= $row['id']; ?>">
+                                    <p id="suara<?= $row['id']; ?>" style="display: none;">0</p>
                                     <tr>
                                         <th rowspan=" 2" class="px-3">
-                                            <h2><?= trim($row['calon_no'], "CALON "); ?></h2>
+                                            <h2 id="no-calon"><?= trim($row['calon_no'], "CALON "); ?></h2>
                                         </th>
-                                        <td class="ps-3 fw-bold"><button onclick="tc<?= $row['id'] ?>()" class="m-0 p-0 btn stretched-link kandidat"></button><?= $row['nama']; ?></td>
+                                        <td class="ps-3 fw-bold" id="nama-calon"><button onclick="tc<?= $row['id'] ?>()" class="m-0 p-0 btn stretched-link kandidat"></button><?= $row['nama']; ?></td>
                                     </tr>
                                     <tr>
-                                        <td class="ps-3 fw-bold"><?= $row['nbm']; ?></td>
+                                        <td class="ps-3 nbm fw-bold"><?= $row['nbm']; ?></td>
                                     </tr>
                                 </table>
                             </div>
@@ -128,7 +129,7 @@ if ($_SESSION['login']) : ?>
 
             <div class="d-grid col-2 ms-auto mt-3">
                 <p class="ijo fw-bold text-end">Anda sudah memilih <span id="total-pilih">0</span>/13</p>
-                <button class="btn btn-primary" disabled id="sub" type="button" data-bs-toggle="modal" data-bs-target="#pilihmodal">Konfirmasi</button>
+                <button class="btn btn-primary" disabled id="sub" type="button" onclick="selectdata()" data-bs-toggle="modal" data-bs-target="#pilihmodal">Konfirmasi</button>
             </div>
 
             <!-- modal error -->
@@ -150,58 +151,71 @@ if ($_SESSION['login']) : ?>
                 </div>
             </div>
 
-            <?php
+            <!-- Modal -->
+            <div class="modal fade" id="pilihmodal" tabindex="-1" aria-labelledby="pilihmodalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-xl">
+                    <div class="modal-content">
+                        <div class="modal-body">
+                            <!-- header -->
+                            <div class="text-center ijo">
+                                <h2>13 Calon Pilihan Anda</h2>
+                                <h5>Apakah anda yakin akan memilih kandidat kandidat berikut?</h5>
+                            </div>
 
-            $sql = "SELECT * FROM tb_calon WHERE nama = $terpilih ";
-            $query = mysqli_query($db, $sql);
-
-            while ($row = mysqli_fetch_assoc($query)) :
-
-            ?>
-
-                <!-- Modal -->
-                <div class="modal fade" id="pilihmodal" tabindex="-1" aria-labelledby="pilihmodalLabel" aria-hidden="true">
-                    <div class="modal-dialog modal-xl">
-                        <div class="modal-content">
-                            <div class="modal-body">
-                                <!-- header -->
-                                <div class="text-center ijo">
-                                    <h2>13 Calon Pilihan Anda</h2>
-                                    <h5>Apakah anda yakin akan memilih kandidat kandidat berikut?</h5>
-                                </div>
-
-                                <!-- pilihan pemilih -->
+                            <!-- pilihan pemilih -->
+                            <div id="showpilihan">
                                 <div class="d-grid col-12 mt-3">
                                     <div class="card card-modal">
                                         <div class="card-body">
                                             <div class="row">
-                                                <span class="col-md-6 px-5 fw-bold"><?= $row['calon_no']; ?></span>
-                                                <span class="col-md-6 px-5 fw-bold">Alip</span>
+                                                <span class="col-md-4 px-5 fw-bold">1</span>
+                                                <span class="col-md-4 px-5 fw-bold">Calon 1</span>
+                                                <span class="col-md-4 px-5 fw-bold">Alip</span>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
+                            </div>
 
-                                <!-- footer -->
-                                <div class="row mt-3 ms-auto">
-                                    <div class="col-md-4"></div>
-                                    <div class="col-md-2">
-                                        <button class="btn btn-outline" data-bs-dismiss="modal">batal</button>
-                                    </div>
-                                    <div class=" col-md-2">
-                                        <button class="btn btn-primary">lanjut</button>
-                                    </div>
-                                    <div class="col-md-4"></div>
-
+                            <!-- footer -->
+                            <div class="row mt-3 ms-auto">
+                                <div class="col-md-4"></div>
+                                <div class="col-md-2">
+                                    <button class="btn btn-outline" data-bs-dismiss="modal">batal</button>
                                 </div>
+                                <div class=" col-md-2">
+                                    <button class="btn btn-primary">lanjut</button>
+                                </div>
+                                <div class="col-md-4"></div>
+
                             </div>
                         </div>
                     </div>
                 </div>
+            </div>
+            <script>
+                function selectdata() {
+                    var a = document.getElementById("daftar").textContent.split("\n").map(part => part.trim()).filter(part => part.trim().length > 0);
+                    var b = document.getElementsByTagName("input");
 
-            <?php endwhile; ?>
+                    var datas = [];
 
+                    for (let i = 0; i < a.length; i += 4) {
+                        datas.push([a[i], a[i + 1], a[i + 2], a[i + 3]]);
+                    }
 
+                    $("#showpilihan").empty();
+
+                    var no = 1;
+
+                    for (let i = 0; i < datas.length; i++) {
+                        if (datas[i][0] == 1) {
+                            $("#showpilihan").append("<div class='d-grid col-12 mt-3'> <div class = 'card card-modal' > <div class = 'card-body'><div class = 'row' ><span class = 'col-md-2 px-5 fw-bold' > " + (no++) + " </span> <span class = 'col-md-3 px-5 fw-bold' > Calon " + (datas[i][1]) + " </span> <span class = 'col-md-3 px-5 fw-bold' > " + (datas[i][2]) + " </span> <span class = 'col-md-3 px-5 fw-bold' > " + (datas[i][3]) + " </span> </div> </div> </div> </div>");
+                        }
+                    }
+
+                }
+            </script>
 
         </div>
         <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
@@ -216,6 +230,7 @@ if ($_SESSION['login']) : ?>
                 function tc<?= $row['id'] ?>() {
                     var a = document.getElementById("<?= $row['id'] ?>");
                     var b = document.getElementById("co<?= $row['id']; ?>");
+                    var suara = document.getElementById("suara<?= $row['id']; ?>");
                     var element = document.getElementById("total-pilih");
                     var number = parseInt(element.textContent);
 
@@ -226,16 +241,14 @@ if ($_SESSION['login']) : ?>
                             b.classList.add("active");
                             element.innerHTML = Number(number) + 1;
                             a.value = Number(a.value) + 1
+                            suara.innerHTML = a.value
                         }
                     } else {
                         b.classList.remove("active");
                         element.innerHTML = Number(number) - 1;
                         a.value = Number(a.value) - 1
+                        suara.innerHTML = a.value
                     }
-
-                    var div = document.getElementById("daftar");
-                    var buttons = div.getElementsByTagName("button");
-                    var inputs = div.getElementsByTagName("input");
 
                     var sub = document.getElementById("sub");
 
@@ -245,8 +258,6 @@ if ($_SESSION['login']) : ?>
                         sub.disabled = true;
                     }
                 }
-
-                
             </script>
         <?php endwhile; ?>
     </body>
