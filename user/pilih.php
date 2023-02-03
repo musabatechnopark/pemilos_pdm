@@ -93,106 +93,108 @@ if ($_SESSION['login']) : ?>
 
             <h2 class="mt-5 ijo">Pilihlah 13 dari 80 kandidat di bawah</h2>
 
-            <!-- awal tempat pilih -->
-            <div id="daftar" class="row row-cols-1 row-cols-md-4 g-4 mt-2">
+            <form action="../sistem/voting/voting.php" method="post">
+                <!-- awal tempat pilih -->
+                <div id="daftar" class="row row-cols-1 row-cols-md-4 g-4 mt-2">
 
-                <?php
-                $sql = "SELECT * FROM tb_calon";
-                $query = mysqli_query($db, $sql);
+                    <?php
+                    $sql = "SELECT * FROM tb_calon";
+                    $query = mysqli_query($db, $sql);
 
-                while ($row = mysqli_fetch_assoc($query)) :
-                ?>
-                    <!-- card pilihan -->
-                    <div class="col">
-                        <div class="card pilih" id="co<?= $row['id']; ?>">
-                            <div class="card-body">
-                                <table>
-                                    <input type="hidden" id="<?= $row['id']; ?>">
-                                    <p id="suara<?= $row['id']; ?>" style="display: none;">0</p>
-                                    <tr>
-                                        <th rowspan=" 2" class="px-3">
-                                            <h2 id="no-calon"><?= trim($row['calon_no'], "CALON "); ?></h2>
-                                        </th>
-                                        <td class="ps-3 fw-bold" id="nama-calon"><button onclick="tc<?= $row['id'] ?>()" class="m-0 p-0 btn stretched-link kandidat"></button><?= $row['nama']; ?></td>
-                                    </tr>
-                                    <tr>
-                                        <td class="ps-3 nbm fw-bold"><?= $row['nbm']; ?></td>
-                                    </tr>
-                                </table>
+                    while ($row = mysqli_fetch_assoc($query)) :
+                    ?>
+                        <!-- card pilihan -->
+                        <div class="col">
+                            <div class="card pilih" id="co<?= $row['id']; ?>">
+                                <div class="card-body">
+                                    <table>
+                                        <input type="hidden" name="<?= $row['id']; ?>" id="<?= $row['id']; ?>">
+                                        <p id="suara<?= $row['id']; ?>" style="display: none;">0</p>
+                                        <tr>
+                                            <th rowspan=" 2" class="px-3">
+                                                <h2 id="no-calon"><?= trim($row['calon_no'], "CALON "); ?></h2>
+                                            </th>
+                                            <td class="ps-3 fw-bold" id="nama-calon"><button type="button" onclick="tc<?= $row['id'] ?>()" class="m-0 p-0 btn stretched-link kandidat"></button><?= $row['nama']; ?></td>
+                                        </tr>
+                                        <tr>
+                                            <td class="ps-3 nbm fw-bold"><?= $row['nbm']; ?></td>
+                                        </tr>
+                                    </table>
+                                </div>
                             </div>
                         </div>
-                    </div>
 
-                <?php endwhile; ?>
+                    <?php endwhile; ?>
 
-            </div>
+                </div>
 
-            <div class="d-grid col-2 ms-auto mt-3">
-                <p class="ijo fw-bold text-end">Anda sudah memilih <span id="total-pilih">0</span>/13</p>
-                <button class="btn btn-primary" disabled id="sub" type="button" onclick="selectdata()" data-bs-toggle="modal" data-bs-target="#pilihmodal">Konfirmasi</button>
-            </div>
+                <div class="d-grid col-2 ms-auto mt-3">
+                    <p class="ijo fw-bold text-end">Anda sudah memilih <span id="total-pilih">0</span>/13</p>
+                    <button class="btn btn-primary" disabled id="sub" type="button" onclick="selectdata()" data-bs-toggle="modal" data-bs-target="#pilihmodal">Konfirmasi</button>
+                </div>
 
-            <!-- modal error -->
-            <div id="kakean" class="modal" tabindex="-1">
-                <div class="modal-dialog">
-                    <div class="modal-content">
-                        <div class="modal-header">
-                            <h5 class="modal-title">Modal title</h5>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                        </div>
-                        <div class="modal-body">
-                            <p>Modal body text goes here.</p>
-                        </div>
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                            <button type="button" class="btn btn-primary">Save changes</button>
+                <!-- modal error -->
+                <div id="kakean" class="modal" tabindex="-1">
+                    <div class="modal-dialog">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h5 class="modal-title">Modal title</h5>
+                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                            </div>
+                            <div class="modal-body">
+                                <p>Modal body text goes here.</p>
+                            </div>
+                            <div class="modal-footer">
+                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                <button type="button" class="btn btn-primary">Save changes</button>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
 
-            <!-- Modal -->
-            <div class="modal fade" id="pilihmodal" tabindex="-1" aria-labelledby="pilihmodalLabel" aria-hidden="true">
-                <div class="modal-dialog modal-xl">
-                    <div class="modal-content">
-                        <div class="modal-body">
-                            <!-- header -->
-                            <div class="text-center ijo">
-                                <h2>13 Calon Pilihan Anda</h2>
-                                <h5>Apakah anda yakin akan memilih kandidat kandidat berikut?</h5>
-                            </div>
+                <!-- Modal -->
+                <div class="modal fade" id="pilihmodal" tabindex="-1" aria-labelledby="pilihmodalLabel" aria-hidden="true">
+                    <div class="modal-dialog modal-xl">
+                        <div class="modal-content">
+                            <div class="modal-body">
+                                <!-- header -->
+                                <div class="text-center ijo">
+                                    <h2>13 Calon Pilihan Anda</h2>
+                                    <h5>Apakah anda yakin akan memilih kandidat kandidat berikut?</h5>
+                                </div>
 
-                            <!-- pilihan pemilih -->
-                            <div id="showpilihan">
-                                <div class="d-grid col-12 mt-3">
-                                    <div class="card card-modal">
-                                        <div class="card-body">
-                                            <div class="row">
-                                                <span class="col-md-4 px-5 fw-bold">1</span>
-                                                <span class="col-md-4 px-5 fw-bold">Calon 1</span>
-                                                <span class="col-md-4 px-5 fw-bold">Alip</span>
+                                <!-- pilihan pemilih -->
+                                <div id="showpilihan">
+                                    <div class="d-grid col-12 mt-3">
+                                        <div class="card card-modal">
+                                            <div class="card-body">
+                                                <div class="row">
+                                                    <span class="col-md-4 px-5 fw-bold">1</span>
+                                                    <span class="col-md-4 px-5 fw-bold">Calon 1</span>
+                                                    <span class="col-md-4 px-5 fw-bold">Alip</span>
+                                                </div>
                                             </div>
                                         </div>
                                     </div>
                                 </div>
-                            </div>
 
-                            <!-- footer -->
-                            <div class="row mt-3 ms-auto">
-                                <div class="col-md-4"></div>
-                                <div class="col-md-2">
-                                    <button class="btn btn-outline" data-bs-dismiss="modal">batal</button>
-                                </div>
-                                <div class=" col-md-2">
-                                    <button class="btn btn-primary">lanjut</button>
-                                </div>
-                                <div class="col-md-4"></div>
+                                <!-- footer -->
+                                <div class="row mt-3 ms-auto">
+                                    <div class="col-md-4"></div>
+                                    <div class="col-md-2">
+                                        <button class="btn btn-outline" data-bs-dismiss="modal">batal</button>
+                                    </div>
+                                    <div class=" col-md-2">
+                                        <button type="submit" name="voting" value="true" class="btn btn-primary">lanjut</button>
+                                    </div>
+                                    <div class="col-md-4"></div>
 
+                                </div>
                             </div>
                         </div>
                     </div>
                 </div>
-            </div>
+            </form>
             <script>
                 function selectdata() {
                     var a = document.getElementById("daftar").textContent.split("\n").map(part => part.trim()).filter(part => part.trim().length > 0);
@@ -210,7 +212,7 @@ if ($_SESSION['login']) : ?>
 
                     for (let i = 0; i < datas.length; i++) {
                         if (datas[i][0] == 1) {
-                            $("#showpilihan").append("<div class='d-grid col-12 mt-3'> <div class = 'card card-modal' > <div class = 'card-body'><div class = 'row' ><span class = 'col-md-2 px-5 fw-bold' > " + (no++) + " </span> <span class = 'col-md-3 px-5 fw-bold' > Calon " + (datas[i][1]) + " </span> <span class = 'col-md-3 px-5 fw-bold' > " + (datas[i][2]) + " </span> <span class = 'col-md-3 px-5 fw-bold' > " + (datas[i][3]) + " </span> </div> </div> </div> </div>");
+                            $("#showpilihan").append("<div class='d-grid col-12 mt-3'> <div class = 'card card-modal' > <div class = 'card-body'><div class = 'row' ><span class = 'col-md-2 px-5 fw-bold' > " + (no++) + " </span> <span class = 'col-md-3 px-5 fw-bold' > CALON " + (datas[i][1]) + " </span> <span class = 'col-md-3 px-5 fw-bold' > " + (datas[i][2]) + " </span> <span class = 'col-md-3 px-5 fw-bold' > " + (datas[i][3]) + " </span> </div> </div> </div> </div>");
                         }
                     }
 
@@ -235,7 +237,7 @@ if ($_SESSION['login']) : ?>
                     var number = parseInt(element.textContent);
 
                     if (a.value == 0) {
-                        if (number >= 1) {
+                        if (number >= 13) {
                             return Swal.fire('anda sudah memilih 13')
                         } else {
                             b.classList.add("active");
@@ -252,11 +254,12 @@ if ($_SESSION['login']) : ?>
 
                     var sub = document.getElementById("sub");
 
-                    if (number == 0) {
+                    if (Number(number) + 1 == 13) {
                         sub.disabled = false;
                     } else {
                         sub.disabled = true;
                     }
+
                 }
             </script>
         <?php endwhile; ?>
