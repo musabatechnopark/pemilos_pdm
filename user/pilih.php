@@ -182,7 +182,7 @@ if ($_SESSION['login']) : ?>
                                 <div class="row mt-3 ms-auto">
                                     <div class="col-md-4"></div>
                                     <div class="col-md-2">
-                                        <button class="btn btn-outline" data-bs-dismiss="modal">batal</button>
+                                        <button type="button" class="btn btn-outline" data-bs-dismiss="modal">batal</button>
                                     </div>
                                     <div class=" col-md-2">
                                         <button type="submit" name="voting" value="true" class="btn btn-primary">lanjut</button>
