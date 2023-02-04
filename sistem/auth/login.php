@@ -47,6 +47,7 @@ switch ($request['login']) {
 
                 $_SESSION['nama'] = strtoupper($data['nama']);
                 $_SESSION['nbm'] = $nbm;
+                $_SESSION['pemilos'] = $data['pemilos'];
                 $_SESSION['login'] = true;
                 $_SESSION['role'] = 'user';
                 $_SESSION['cabang'] = strtoupper($data['cabang']);

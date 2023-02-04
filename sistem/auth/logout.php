@@ -17,6 +17,7 @@ switch ($_SESSION['role']) {
         unset(
             $_SESSION['nama'],
             $_SESSION['nbm'],
+            $_SESSION['pemilos'],
             $_SESSION['login'],
             $_SESSION['role'],
             $_SESSION['cabang']

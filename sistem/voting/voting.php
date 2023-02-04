@@ -16,11 +16,14 @@ switch ($request['voting']) {
         }
 
         foreach ($request as $key => $value) :
-            if (!empty($value) && is_numeric($value)) :
+            if (!escape(empty($value)) && escape(is_numeric($value))) :
                 $sql = "INSERT INTO tb_suara (pengguna_id, calon_id, jumlah) VALUES ('$uid', '$key', '$value')";
                 $query = mysqli_query($db, $sql);
             endif;
         endforeach;
+
+        $sql2 = "UPDATE tb_pengguna SET pemilos = 'sudah' WHERE id = '$uid'";
+        $query = mysqli_query($db, $sql2);
 
         return return_url('../../user/trims.php');
         break;

@@ -84,7 +84,7 @@ include 'sidebar.php';
                                 });
 
                                 setInterval(async function() {
-                                    const api = await fetch('http://127.0.0.1/pemilos_pdm/sistem/admin/dashboard.php?type=json')
+                                    const api = await fetch('http://127.0.0.1/pdm/frontend/sistem/admin/dashboard.php?type=json')
                                     const {
                                         data
                                     } = await api.json()
@@ -146,7 +146,7 @@ include 'sidebar.php';
 
     function getData() {
         $.ajax({
-            url: 'http://127.0.0.1/pemilos_pdm/sistem/admin/dashboard.php?type=html',
+            url: 'http://127.0.0.1/pdm/frontend/sistem/admin/dashboard.php?type=html',
             type: 'GET',
             success: function(response) {
                 $("tbody").html(response);

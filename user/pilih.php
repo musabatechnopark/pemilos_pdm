@@ -1,7 +1,12 @@
 <?php
 include '../database/koneksi.php';
 
-if ($_SESSION['login']) : ?>
+if ($_SESSION['login']) :
+    if ($_SESSION['pemilos'] == 'sudah') {
+        return return_url('sudahpilih.php');
+    }
+?>
+
     <!DOCTYPE html>
     <html lang="en">
 
