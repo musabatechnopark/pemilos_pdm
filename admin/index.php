@@ -44,7 +44,7 @@ include 'sidebar.php';
 
                     <div class="card-body">
                         <h5 class="card-title">
-                            Leadeerboard Suara
+                            Leaderboard Suara
                         </h5>
 
                         <!-- Line Chart -->
@@ -113,9 +113,9 @@ include 'sidebar.php';
             <div class="col-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Table with hoverable rows</h5>
+                        <h5 class="card-title">tabel hasil suara</h5>
 
-                        <!-- Table with hoverable rows -->
+                        <!-- tabel hasil suara -->
                         <table class="table table-hover">
                             <thead>
                                 <tr>
@@ -129,7 +129,7 @@ include 'sidebar.php';
 
                             </tbody>
                         </table>
-                        <!-- End Table with hoverable rows -->
+                        <!-- End tabel hasil suara -->
 
                     </div>
                 </div>

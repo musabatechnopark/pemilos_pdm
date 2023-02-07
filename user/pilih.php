@@ -124,7 +124,7 @@ if ($_SESSION['login']) :
 
                     for (let i = 0; i < datas.length; i++) {
                         if (datas[i][0] == 1) {
-                            $("#showpilihan").append("<div class='d-grid col-12 mt-3'> <div class = 'card card-modal' > <div class = 'card-body'><div class = 'row' ><span class = 'col-md-2 px-5 fw-bold' > " + (no++) + " </span> <span class = 'col-md-3 px-5 fw-bold' > CALON " + (datas[i][1]) + " </span> <span class = 'col-md-3 px-5 fw-bold' > " + (datas[i][2]) + " </span> <span class = 'col-md-3 px-5 fw-bold' > " + (datas[i][3]) + " </span> </div> </div> </div> </div>");
+                            $("#showpilihan").append("<div class='d-grid col-12 mt-3'> <div class = 'card card-modal' > <div class = 'card-body'><div class = 'row' ><span class = 'col-md-1 ps-5 fw-bold' > " + (no++) + " </span> <span class = 'col-md-3 fw-bold' > CALON " + (datas[i][1]) + " </span> <span class = 'col-md-4 fw-bold' > " + (datas[i][2]) + " </span> <span class = 'col-md-3 fw-bold' > " + (datas[i][3]) + " </span> </div> </div> </div> </div>");
                         }
                     }
 
