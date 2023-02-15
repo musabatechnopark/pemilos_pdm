@@ -2,7 +2,7 @@
 include '../database/koneksi.php';
 
 if ($_SESSION['login']) :
-    if ($_SESSION['pemilos'] == 'sudah') {
+    if ($_SESSION['pemilos'] == 'Sudah') {
         return return_url('sudahpilih.php');
     }
 ?>
@@ -36,9 +36,9 @@ if ($_SESSION['login']) :
                     ?>
                         <!-- card pilihan -->
                         <div class="col">
-                            <div class="card pilih" id="co<?= $row['id']; ?>">
+                            <div class="card pilih" style="height: 110px;" id="co<?= $row['id']; ?>">
                                 <div class="card-body">
-                                    <table>
+                                    <table style="height: 70px;">
                                         <input type="hidden" name="<?= $row['id']; ?>" id="<?= $row['id']; ?>">
                                         <p id="suara<?= $row['id']; ?>" style="display: none;">0</p>
                                         <tr>
@@ -48,13 +48,12 @@ if ($_SESSION['login']) :
                                             <td class="ps-3 fw-bold" id="nama-calon"><button type="button" onclick="tc<?= $row['id'] ?>()" class="m-0 p-0 btn stretched-link kandidat"></button><?= $row['nama']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td class="ps-3 nbm fw-bold"><?= $row['nbm']; ?></td>
+                                            <td class="ps-3 nbm fw-bold"><?= $row['cabang']; ?></td>
                                         </tr>
                                     </table>
                                 </div>
                             </div>
                         </div>
-
                     <?php endwhile; ?>
 
                 </div>

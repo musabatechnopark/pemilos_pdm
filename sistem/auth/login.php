@@ -20,7 +20,7 @@ switch ($request['login']) {
                 $_SESSION['login'] = true;
                 $_SESSION['username'] = $username;
 
-                echo "login successful";
+                return_url('../../admin');
             } else {
                 return $_SESSION['error_login'] = 'nbm atau password salah' . redirect_back();
             }

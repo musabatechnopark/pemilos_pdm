@@ -9,7 +9,7 @@ include 'sidebar.php';
         <nav>
             <ol class="breadcrumb">
                 <li class="breadcrumb-item">
-                    <a href="index.html">Home</a>
+                    <p>Home</p>
                 </li>
                 <li class="breadcrumb-item active">Dashboard</li>
             </ol>
@@ -122,6 +122,7 @@ include 'sidebar.php';
                                     <th scope="col">No</th>
                                     <th scope="col">Nama</th>
                                     <th scope="col">Nomer Calon</th>
+                                    <th scope="col">Cabang</th>
                                     <th scope="col">Jumlah Suara</th>
                                 </tr>
                             </thead>
