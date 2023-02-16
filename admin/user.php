@@ -15,8 +15,7 @@ include 'sidebar.php';
                 <li class="breadcrumb-item">
                     <p>Home</p>
                 </li>
-                <li class="breadcrumb-item">User</li>
-                <li class="breadcrumb-item active">Data</li>
+                <li class="breadcrumb-item active">User</li>
             </ol>
         </nav>
     </div>
@@ -34,14 +33,14 @@ include 'sidebar.php';
                         <table class="table datatable">
                             <?php
                             if (@$_SESSION['message']) : ?>
-                                <div class="alert alert-success alert-dismissible fade show" role="alert">
+                                <div class="alert alert-success mt-2 alert-dismissible fade show" role="alert">
                                     <?= @$_SESSION['message']; ?>
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
                             <?php else : ?>
                             <?php endif;
                             if (@$_SESSION['message_error']) : ?>
-                                <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                                <div class="alert alert-danger mt-2 alert-dismissible fade show" role="alert">
                                     <?= @$_SESSION['message_error']; ?>
                                     <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
                                 </div>
@@ -190,6 +189,12 @@ include 'sidebar.php';
                                                                     <label class="col-sm-2 col-form-label">Cabang</label>
                                                                     <div class="col-sm-10">
                                                                         <input type="text" name="cabang" class="form-control" id="staticEmail">
+                                                                    </div>
+                                                                </div>
+                                                                <div class="mb-3 row">
+                                                                    <label class="col-sm-2 col-form-label">Password</label>
+                                                                    <div class="col-sm-10">
+                                                                        <input type="password" name="password" class="form-control" id="staticEmail">
                                                                     </div>
                                                                 </div>
                                                             </div>

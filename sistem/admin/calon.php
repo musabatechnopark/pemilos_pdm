@@ -1,7 +1,7 @@
 <?php
 include '../../database/koneksi.php';
 
-if (empty($_SESSION['login']) && $_SESSION['role'] == 'admin') return $_SESSION['error_logut'] = 'You not login' . redirect_back();
+if (empty($_SESSION['login']) && $_SESSION['role'] != 'admin') return $_SESSION['error_logut'] = 'You not login' . redirect_back();
 
 switch ($request['action']) {
     case 'add':

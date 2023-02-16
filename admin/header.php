@@ -1,3 +1,5 @@
+<?php if (@empty($_SESSION['login']) && $_SESSION['role'] != 'admin') return return_url('../');; ?>
+
 <!DOCTYPE html>
 <html lang="en">
 

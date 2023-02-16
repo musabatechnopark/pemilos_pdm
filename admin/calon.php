@@ -15,8 +15,7 @@ include 'sidebar.php';
                 <li class="breadcrumb-item">
                     <p>Home</p>
                 </li>
-                <li class="breadcrumb-item">User</li>
-                <li class="breadcrumb-item active">Data</li>
+                <li class="breadcrumb-item active">Calon</li>
             </ol>
         </nav>
     </div>
@@ -162,47 +161,47 @@ include 'sidebar.php';
                                                             </div>
                                                             <div class="modal-body">
                                                                 <input type="hidden" name="id"">
-                                                                <div class="mb-3 row">
-                                                                    <label for="staticEmail" class="col-sm-2 col-form-label">NBM</label>
-                                                                    <div class="col-sm-10">
-                                                                        <input type="number" name="nbm" class="form-control" id="staticEmail">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="mb-3 row">
-                                                                    <label for="staticEmail" class="col-sm-2 col-form-label">No Calon</label>
-                                                                    <div class="col-sm-10">
-                                                                        <input type="text" name="nomor_calon" class="form-control" id="staticEmail">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="mb-3 row">
-                                                                    <label for="staticEmail" class="col-sm-2 col-form-label">Nama</label>
-                                                                    <div class="col-sm-10">
-                                                                        <input type="text" name="nama" class="form-control" id="staticEmail">
-                                                                    </div>
-                                                                </div>
-                                                                <div class="mb-3 row">
-                                                                    <label for="inputPassword" class="col-sm-2 col-form-label">Cabang</label>
-                                                                    <div class="col-sm-10">
-                                                                        <input type="text" name="cabang" class="form-control" id="inputPassword">
-                                                                    </div>
+                                                                <div class=" mb-3 row">
+                                                                <label for="staticEmail" class="col-sm-2 col-form-label">NBM</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="number" name="nbm" class="form-control" id="staticEmail">
                                                                 </div>
                                                             </div>
-                                                            <div class="modal-footer">
-                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                                                                <button type="submit" class="btn btn-primary" name="action" value="add">Tambah</button>
+                                                            <div class="mb-3 row">
+                                                                <label for="staticEmail" class="col-sm-2 col-form-label">No Calon</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" name="nomor_calon" class="form-control" id="staticEmail">
+                                                                </div>
                                                             </div>
-                                                        </form>
+                                                            <div class="mb-3 row">
+                                                                <label for="staticEmail" class="col-sm-2 col-form-label">Nama</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" name="nama" class="form-control" id="staticEmail">
+                                                                </div>
+                                                            </div>
+                                                            <div class="mb-3 row">
+                                                                <label for="inputPassword" class="col-sm-2 col-form-label">Cabang</label>
+                                                                <div class="col-sm-10">
+                                                                    <input type="text" name="cabang" class="form-control" id="inputPassword">
+                                                                </div>
+                                                            </div>
                                                     </div>
+                                                    <div class="modal-footer">
+                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="submit" class="btn btn-primary" name="action" value="add">Tambah</button>
+                                                    </div>
+                                                    </form>
                                                 </div>
                                             </div>
-                                        </td>
-                                    </tr>
-                                <?php endwhile; ?>
-                            </tbody>
-                        </table>
                     </div>
+                    </td>
+                    </tr>
+                <?php endwhile; ?>
+                </tbody>
+                </table>
                 </div>
             </div>
+        </div>
         </div>
     </section>
 </main>

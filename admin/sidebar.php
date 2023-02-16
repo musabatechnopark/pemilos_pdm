@@ -19,6 +19,12 @@
                     <span>Calon</span>
                 </a>
             </li>
+            <li class="nav-item">
+                <a class="nav-link <?= ($_SERVER['SCRIPT_NAME'] == "/pdm/frontend/admin/setting.php") ? '' : 'collapsed' ?>" href="setting.php">
+                    <i class="bi bi-grid"></i>
+                    <span>Setting</span>
+                </a>
+            </li>
             <!-- End Dashboard Nav -->
 
         </ul>

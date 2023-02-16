@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-        <link rel="stylesheet" href="../assets/css/user.css">
+    <link rel="stylesheet" href="../assets/css/user.css">
 
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
@@ -16,19 +16,23 @@
 <body>
     <section class="vh-100">
         <div class="container py-5 h-100">
-            <div class="row d-flex align-items-center justify-content-center h-100">
-                <div class="col-md-5">
-                    <div class="text-center">
-                        <h2 class="fw-bold ijo">Trimakasih sudah memilih</h2>
-                        <h2 class="fw-bold kuning"><?= $_SESSION['nama']; ?></h2>
-                        <h2 class="fw-bold ijo mb-5">PCM <?= $_SESSION['cabang']; ?></h2>
+            <div class="row d-flex align-items-center justify-content-center text-center h-100">
 
-                        <p class="ijo">silahkan keluar</p>
+                <div class="col-md-8 col-lg-7 col-xl-6">
+                    <img src="../assets/img/logo-musyda.png" class="img w-50" alt="Logo Muhammadiyah" />
+                </div>
 
-                        <a class="btn btn-outline sedang" href="../sistem/auth/logout.php">KELUAR</a>
-                    </div>
+                <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                    <h2 class="fw-bold ijo">Trimakasih sudah memilih</h2>
+                    <h2 class="fw-bold kuning"><?= $_SESSION['nama']; ?></h2>
+                    <h2 class="fw-bold ijo mb-5">PCM <?= $_SESSION['cabang']; ?></h2>
+
+                    <p class="ijo">silahkan keluar</p>
+
+                    <a class="btn btn-outline sedang" href="../sistem/auth/logout.php">KELUAR</a>
                 </div>
             </div>
+        </div>
         </div>
     </section>
     <script>

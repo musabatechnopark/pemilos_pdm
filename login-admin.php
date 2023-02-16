@@ -20,15 +20,10 @@ if (@!$_SESSION['login']) : ?>
             <div class="container py-5 h-100">
                 <div class="row d-flex align-items-center justify-content-center text-center h-100">
 
-                    <!-- card logo Muhammadiyah -->
-                    <div class="col-md-8 col-lg-7 col-xl-6">
-                        <img src="assets/img/logo-musyda.png" class="img w-50" alt="Logo Muhammadiyah" />
-                    </div>
-
                     <!-- card login -->
-                    <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
+                    <div class="col-md-7 col-lg-5 col-xl-5">
                         <div class="text-center">
-                            <h2 class="fw-bold mb-2 ijo">Selamat Datang</h2>
+                            <h2 class="fw-bold mb-2 ijo">Login Admin</h2>
                             <p class="text-break mb-5 ijo">Silahkan Login dengan memasukan Username dan Password</p>
                         </div>
 
