@@ -53,7 +53,7 @@ include 'sidebar.php';
                                     <th scope="col">NBM</th>
                                     <th scope="col">Nomor Calon</th>
                                     <th scope="col">Nama</th>
-                                    <th scope="col">Cabang</th>
+                                    <th scope="col">Keterangan</th>
                                     <th scope="col">Action</th>
                                 </tr>
                             </thead>
@@ -72,7 +72,7 @@ include 'sidebar.php';
                                         <td><?= $row['nbm']; ?></td>
                                         <td><?= $row['calon_no']; ?></td>
                                         <td><?= $row['nama']; ?></td>
-                                        <td><?= $row['cabang']; ?></td>
+                                        <td><?= $row['keterangan']; ?></td>
                                         <td>
                                             <!-- Button trigger modal -->
                                             <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#edit-<?= $row['id'] ?>">
@@ -135,9 +135,9 @@ include 'sidebar.php';
                                                                     </div>
                                                                 </div>
                                                                 <div class="mb-3 row">
-                                                                    <label for="inputPassword" class="col-sm-2 col-form-label">Cabang</label>
+                                                                    <label for="inputPassword" class="col-sm-2 col-form-label">Keterangan</label>
                                                                     <div class="col-sm-10">
-                                                                        <input type="text" name="cabang" class="form-control" id="inputPassword" value="<?= $row['cabang']; ?>">
+                                                                        <input type="text" name="keterangan" class="form-control" id="inputPassword" value="<?= $row['keterangan']; ?>">
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -180,9 +180,9 @@ include 'sidebar.php';
                                                                 </div>
                                                             </div>
                                                             <div class="mb-3 row">
-                                                                <label for="inputPassword" class="col-sm-2 col-form-label">Cabang</label>
+                                                                <label for="inputPassword" class="col-sm-2 col-form-label">Keterangan</label>
                                                                 <div class="col-sm-10">
-                                                                    <input type="text" name="cabang" class="form-control" id="inputPassword">
+                                                                    <input type="text" name="keterangan" class="form-control" id="inputPassword">
                                                                 </div>
                                                             </div>
                                                     </div>

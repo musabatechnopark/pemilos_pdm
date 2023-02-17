@@ -44,7 +44,7 @@ switch ($request['action']) {
         }
 
         $sql = "UPDATE tb_pengguna SET nbm = '$nbm', nama = '$nama', cabang = '$cabang', pemilos ='$pemilos' WHERE id = '$id'";
-        $up_password = "UPDATE tb_login SET password = '$password' WHERE nbm = '" . $data['nbm'] . "'";
+        $up_password = "UPDATE tb_login SET nbm = '$nbm', password = '$password' WHERE nbm = '" . $data['nbm'] . "'";
 
         $query = $db->query($sql);
         $query2 = $db->query($up_password);

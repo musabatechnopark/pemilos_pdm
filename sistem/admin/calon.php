@@ -9,11 +9,11 @@ switch ($request['action']) {
         $nbm = escape($request['nbm']);
         $nomor_calon = escape($request['nomor_calon']);
         $nama = escape($request['nama']);
-        $cabang = escape($request['cabang']);
+        $keterangan = escape($request['keterangan']);
 
 
 
-        $sql = "INSERT INTO tb_calon (nbm, calon_no, nama, cabang) VALUES ('$nbm', '$nomor_calon', '$nama' , '$cabang')";
+        $sql = "INSERT INTO tb_calon (nbm, calon_no, nama, keterangan) VALUES ('$nbm', '$nomor_calon', '$nama' , '$keterangan')";
         $query = $db->query($sql);
 
         if ($query) {
@@ -31,7 +31,7 @@ switch ($request['action']) {
         $nbm = escape($request['nbm']);
         $nomor_calon = escape($request['nomor_calon']);
         $nama = escape($request['nama']);
-        $cabang = escape($request['cabang']);
+        $keterangan = escape($request['keterangan']);
 
         $sql = "SELECT * FROM tb_calon WHERE id = '$id'";
         $query = $db->query($sql);
@@ -40,7 +40,7 @@ switch ($request['action']) {
             $data = $row;
         }
 
-        $sql = "UPDATE tb_calon SET nbm = '$nbm', calon_no = '$nomor_calon' , nama = '$nama', cabang = '$cabang' WHERE id = '$id'";
+        $sql = "UPDATE tb_calon SET nbm = '$nbm', calon_no = '$nomor_calon' , nama = '$nama', keterangan = '$keterangan' WHERE id = '$id'";
 
         $query = $db->query($sql);
 

@@ -7,7 +7,7 @@ if (empty($request['type'])) return redirect_back();
 switch ($request['type']) {
     case 'json':
 
-        $sql = "SELECT suara.calon_id as id, SUM(suara.jumlah) AS total, calon.nama as nama, calon.calon_no as nomer, calon.cabang FROM tb_suara as suara, tb_calon as calon WHERE suara.calon_id = calon.id GROUP BY suara.calon_id ORDER BY total DESC LIMIT 13";
+        $sql = "SELECT suara.calon_id as id, SUM(suara.jumlah) AS total, calon.nama as nama, calon.calon_no as nomer, calon.keterangan FROM tb_suara as suara, tb_calon as calon WHERE suara.calon_id = calon.id GROUP BY suara.calon_id ORDER BY total DESC LIMIT 13";
 
         $query = mysqli_query($db, $sql);
 
@@ -32,7 +32,7 @@ switch ($request['type']) {
 
     case 'html':
 
-        $sql = "SELECT suara.calon_id as id, SUM(suara.jumlah) AS total, calon.nama as nama, calon.calon_no as nomer, calon.cabang FROM tb_suara as suara, tb_calon as calon WHERE suara.calon_id = calon.id GROUP BY suara.calon_id ORDER BY total DESC LIMIT 13";
+        $sql = "SELECT suara.calon_id as id, SUM(suara.jumlah) AS total, calon.nama as nama, calon.calon_no as nomer, calon.keterangan FROM tb_suara as suara, tb_calon as calon WHERE suara.calon_id = calon.id GROUP BY suara.calon_id ORDER BY total DESC LIMIT 13";
 
         $query = mysqli_query($db, $sql);
 
@@ -43,7 +43,7 @@ switch ($request['type']) {
                 <td><?= $no++; ?></td>
                 <td><?= $row['nama']; ?></td>
                 <td><?= $row['nomer']; ?></td>
-                <td><?= $row['cabang']; ?></td>
+                <td><?= $row['keterangan']; ?></td>
                 <td><?= $row['total']; ?></td>
             </tr>
 <?php

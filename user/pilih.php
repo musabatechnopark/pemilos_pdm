@@ -48,7 +48,7 @@ if ($_SESSION['login']) :
                                             <td class="ps-3 fw-bold" id="nama-calon"><button type="button" onclick="tc<?= $row['id'] ?>()" class="m-0 p-0 btn stretched-link kandidat"></button><?= $row['nama']; ?></td>
                                         </tr>
                                         <tr>
-                                            <td class="ps-3 nbm fw-bold"><?= $row['cabang']; ?></td>
+                                            <td class="ps-3 nbm fw-bold"><?= $row['keterangan']; ?></td>
                                         </tr>
                                     </table>
                                 </div>
