@@ -26,7 +26,7 @@ if ($_SESSION['login']) :
 
             <form action="../sistem/voting/voting.php" method="post">
                 <!-- awal tempat pilih -->
-                <div id="daftar" class="row row-cols-1 row-cols-md-4 g-4 mt-2">
+                <div id="daftar" class="row row-cols-1 row-cols-md-4 g-4 mt-2" style="padding-bottom: 200px !important;">
 
                     <?php
                     $sql = "SELECT * FROM tb_calon";
@@ -57,10 +57,25 @@ if ($_SESSION['login']) :
                     <?php endwhile; ?>
 
                 </div>
+                <div class="fixed-bottom bg-light shadow-lg ">
+                    <div class="container ">
+                        <div class="row">
+                            <div class="col my-auto">
+                                <img src="../assets/img/musaba.png" class="p-3" style="height: 100px;" alt="">
+                                <img src="../assets/img/techno.png" class="p-3" style="height: 100px;" alt="">
+                            </div>
+                            <div class="col my-auto">
+                                <p class="lead ">hasil karya Technopark Musaba 2023</p>
+                            </div>
+                            <div class="col">
+                                <div class=" d-grid col-6 mb-5 ms-auto mt-3 ">
+                                    <p class=" ijo fw-bold text-end">Anda sudah memilih <span id="total-pilih">0</span>/13</p>
+                                    <button class="btn btn-primary lebar" disabled id="sub" type="button" onclick="selectdata()" data-bs-toggle="modal" data-bs-target="#pilihmodal">Konfirmasi</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
 
-                <div class="d-grid col-2 mb-5 ms-auto mt-3">
-                    <p class="ijo fw-bold text-end">Anda sudah memilih <span id="total-pilih">0</span>/13</p>
-                    <button class="btn btn-primary lebar" disabled id="sub" type="button" onclick="selectdata()" data-bs-toggle="modal" data-bs-target="#pilihmodal">Konfirmasi</button>
                 </div>
 
                 <!-- Modal -->

@@ -70,6 +70,10 @@ if (@!$_SESSION['login']) : ?>
                         </form>
                     </div>
                 </div>
+                <div class="fixed-bottom text-center">
+                    <img src="assets/img/musaba.png" class="p-2 p- mb-5" style="height: 100px;" alt="">
+                    <img src="assets/img/techno.png" class="p-2 mb-5" style="height: 100px;" alt="">
+                </div>
             </div>
         </section>
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
