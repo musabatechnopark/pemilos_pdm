@@ -15,24 +15,32 @@
 
 <body>
     <section class="vh-100">
-        <div class="container py-5 h-100">
-            <div class="row d-flex align-items-center justify-content-center text-center h-100">
+        <div class="container py-5">
+            <div class="row d-flex align-items-center justify-content-center text-center">
 
-                <div class="col-md-8 col-lg-7 col-xl-6">
-                    <img src="../assets/img/logo-musyda.png" class="img w-50" alt="Logo Muhammadiyah" />
+                <div class="col-12 pb-5 ">
+                    <h1 class="fw-bold ijo">APLIKASI E-VOTING MUSABA</h1>
                 </div>
+                <div class="col-md-7 col-lg-5 col-xl-5">
+                    <br>
+                    <br>
+                    <br>
+                    <br>
+                    <br>
 
-                <div class="col-md-7 col-lg-5 col-xl-5 offset-xl-1">
-                    <h2 class="fw-bold ijo">Anda sudah memilih</h2>
-                    <h2 class="fw-bold kuning"><?= $_SESSION['nama']; ?></h2>
-                    <h2 class="fw-bold ijo mb-5">PCM <?= $_SESSION['cabang']; ?></h2>
+                    <img src="../assets/img/welcome.png" class="img w-75 pb-3" alt="Logo Muhammadiyah" />
+                    <div class="text-center">
+                        <h2 class="fw-bold ijo">Anda sudah memilih
+                            <span class="fw-bold kuning"><?= $_SESSION['nama']; ?></span>
+                        </h2>
+                        <h2 class="fw-bold ijo mb-5">PCM <?= $_SESSION['cabang']; ?></h2>
 
-                    <p class="ijo">silahkan keluar</p>
+                        <p class="ijo">silahkan keluar</p>
 
-                    <a class="btn btn-outline sedang" href="../sistem/auth/logout.php">KELUAR</a>
+                        <a class="btn btn-outline lebar p-3" href="../sistem/auth/logout.php">KELUAR</a>
+                    </div>
                 </div>
             </div>
-        </div>
         </div>
     </section>
     <script>
