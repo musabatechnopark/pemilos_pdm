@@ -1,4 +1,5 @@
-<?php if (@empty($_SESSION['login']) && $_SESSION['role'] != 'admin') return return_url('../');; ?>
+<?php if (empty($_SESSION['login'])) return return_url('../');
+if ($_SESSION['role'] == 'user') return redirect_back(); ?>
 
 <!DOCTYPE html>
 <html lang="en">
