@@ -46,6 +46,12 @@ switch ($request['action']) {
         $sql = "UPDATE tb_pengguna SET nbm = '$nbm', nama = '$nama', cabang = '$cabang', pemilos ='$pemilos' WHERE id = '$id'";
         $up_password = "UPDATE tb_login SET nbm = '$nbm', password = '$password' WHERE nbm = '" . $data['nbm'] . "'";
 
+        $sql2 = "DELETE FROM `tb_suara` WHERE pengguna_id = '$id'";
+
+        if ($pemilos == 'Belum'){
+            $query3 = $db->query($sql2);
+        }
+
         $query = $db->query($sql);
         $query2 = $db->query($up_password);
 

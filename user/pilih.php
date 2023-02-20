@@ -1,7 +1,15 @@
 <?php
 include '../database/koneksi.php';
 
-if ($_SESSION['login']) :
+if ($_SESSION['login'] && $_SESSION['role'] == 'user') :
+    $sql = "SELECT * FROM setting ";
+
+    $query = $db->query($sql);
+
+    $data = $query->fetch_object();
+
+    if($data->pemilos == 0) return return_url('../countdown.php');
+
     if ($_SESSION['pemilos'] == 'Sudah') {
         return return_url('sudahpilih.php');
     }
@@ -178,5 +186,5 @@ if ($_SESSION['login']) :
 
     </html>
 <?php else :
-    return_url('../index.php');
+    redirect_back();
 endif; ?>

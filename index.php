@@ -98,6 +98,42 @@ if (@!$_SESSION['login']) : ?>
         </script>
     </body>
 
+    <script type="text/javascript">
+       async function tampilkanWaktu() {
+
+           var date = new Date(); // ambil waktu sekarang
+           var tahun = date.getFullYear(); // ambil tahun
+           var bulan = date.getMonth() + 1; // ambil bulan (di JavaScript, bulan dimulai dari 0)
+           var tanggal = date.getDate();
+           var jam = date.getHours(); // ambil jam
+           var menit = date.getMinutes(); // ambil menit
+           var detik = date.getSeconds(); // ambil detik
+
+           var start = document.getElementById("start_time").innerHTML
+           var id = document.getElementById("id").value
+
+           // tambahkan angka 0 di depan jika angka hanya satu digit
+           if (bulan < 10) bulan = "0" + bulan;
+           if (jam < 10) jam = "0" + jam;
+           if (menit < 10) menit = "0" + menit;
+           if (detik < 10) detik = "0" + detik;
+
+           // tampilkan waktu
+           var waktu = tahun + "-" + bulan + "-" + tanggal + " " + jam + ":" + menit + ":" + detik;
+
+           if (new Date(waktu) > new Date(start)) {
+               var api = await fetch('http://127.0.0.1/pdm/frontend/sistem/admin/setting.php?action=start_otomatis&id=' + id + '&data=1')
+               var data = await api.json()
+
+               console.log(data)
+           }
+
+           console.log(waktu, '\n', start)
+       }
+
+       setInterval(tampilkanWaktu, 1000); // panggil fungsi tampilkanWaktu setiap 1 detik
+   </script>
+   
     </html>
     <?php unset($_SESSION['error_login'], $_SESSION['error_login_catch']); ?>
 
