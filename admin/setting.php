@@ -36,6 +36,26 @@ include 'sidebar.php';
     ?>
     <section class="section">
         <div class="row">
+            <div class="row">
+                <div class="col-lg-8">
+                    <?php
+                    if (@$_SESSION['message']) : ?>
+                        <div class="alert alert-success alert-dismissible fade show" role="alert">
+                            <?= @$_SESSION['message']; ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    <?php else : ?>
+                    <?php endif;
+                    if (@$_SESSION['message_error']) : ?>
+                        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+                            <?= @$_SESSION['message_error']; ?>
+                            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+                        </div>
+                    <?php else : ?>
+                    <?php endif;
+                    unset($_SESSION['message'], $_SESSION['message_error']); ?>
+                </div>
+            </div>
             <div class="col-lg-4">
                 <div class="card">
                     <div class="card-body">

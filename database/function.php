@@ -16,25 +16,21 @@ function escape($param)
 
 function redirect_back()
 {
-    if ($_SESSION['login']){
+    if ($_SESSION['login']) {
 
         if ($_SESSION['role'] == 'user') {
             header('Location: /pdm/frontend/user/welcome.php');
         } else {
             header('Location: /pdm/frontend/admin/');
         }
-
     } else {
-        
+
         if (isset($_SERVER['HTTP_REFERER'])) {
             header('Location: ' . $_SERVER['HTTP_REFERER']);
         } else {
-            // If there is no referrer, redirect to the home page
             header('Location: /pdm/frontend/');
         }
-    
     }
-
 }
 
 function return_url($url)

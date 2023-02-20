@@ -8,7 +8,7 @@ if ($_SESSION['login'] && $_SESSION['role'] == 'user') :
 
     $data = $query->fetch_object();
 
-    if($data->pemilos == 0) return return_url('../countdown.php');
+    if ($data->pemilos == 0) return return_url('../countdown.php');
 
     if ($_SESSION['pemilos'] == 'Sudah') {
         return return_url('sudahpilih.php');
@@ -30,7 +30,7 @@ if ($_SESSION['login'] && $_SESSION['role'] == 'user') :
     <body>
         <div class="container">
 
-            <h2 class="mt-5 ijo">Pilihlah 13 dari 80 kandidat di bawah</h2>
+            <h2 class="mt-5 ijo">Pilihlah 13 dari 80 kandidat di bawah <?= $data->pemilos; ?></h2>
 
             <form action="../sistem/voting/voting.php" method="post">
                 <!-- awal tempat pilih -->

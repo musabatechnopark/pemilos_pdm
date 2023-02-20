@@ -52,6 +52,11 @@
                var data = await api.json()
 
                console.log(data)
+           } else {
+               var api = await fetch('http://127.0.0.1/pdm/frontend/sistem/admin/setting.php?action=start_otomatis&id=' + id + '&data=0')
+               var data = await api.json()
+
+               console.log(data)
            }
 
            console.log(waktu, '\n', start)

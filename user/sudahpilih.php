@@ -1,4 +1,11 @@
-<?php session_start(); ?>
+<?php
+
+include '../database/koneksi.php';
+
+if (empty($_SESSION['login'])) return return_url('../');
+if ($_SESSION['role'] == 'admin') return redirect_back();
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
