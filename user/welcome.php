@@ -1,4 +1,9 @@
-<?php session_start(); ?>
+<?php session_start(); 
+include '../database/koneksi.php';
+
+if(enpty($_SESSION['login'])) return return_url('../');
+
+?>
 <!DOCTYPE html>
 <html lang="en">
 
