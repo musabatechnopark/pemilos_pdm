@@ -22,88 +22,101 @@ $data = $query->fetch_object();
 </head>
 
 <body>
-  <div class="container align-items-center">
-    <h1 class="row text-center justify-content-center fw-bold p-5 ijo">COUNTDOWN PEMILOS</h1>
-    <div class="text-center">
-      <br>
-      <br>
-      <br>
-      <br>
-      <div class="row">
-        <div class="col">
-          <p class="display-3 fw-bold ijo" id="days">0</p>
-          <p class="lead ijo">Days</p>
-        </div>
-        <div class="col">
-          <p class="display-3 fw-bold ijo" id="hours">0</p>
-          <p class="lead ijo">Hours</p>
-        </div>
-        <div class="col">
-          <p class="display-3 fw-bold ijo" id="min">0</p>
-          <p class="lead ijo">Min</p>
-        </div>
-        <div class="col">
-          <p class="display-3 fw-bold ijo" id="sec">0</p>
-          <p class="lead ijo">Sec</p>
-        </div>
-        <!-- <div>
-          <p id="days" class="big-text">0</p>
-          <span>Days</span>
-        </div>
-        <div>
-          <p id="hours" class="big-text">0</p>
-          <span>Hours</span>
-        </div>
-        <div>
-          <p id="min" class="big-text">0</p>
-          <span>Min</span>
-        </div>
-        <div>
-          <p id="sec" class="big-text">0</p>
-          <span>Sec</span>
-        </div> -->
+
+  <div class="container">
+    <div class="grid text-center">
+      <div class="col-12">
+        <h1 class="fw-bold py-5 ijo">PEMILOS BELUM DI MULAI</h1>
+      </div>
+      <div class="col-12">
+        <img src="assets/img/countdown.png" class="w-50 mb-5 p-5" alt="">
+      </div>
+      <div class="col-12 pt-3">
+        <?php if ($data->on_datetime == 1) : ?>
+          <div class="row">
+            <div class="col">
+              <p class="display-1 fw-bold ijo" id="days">0</p>
+              <span class="ijo">Hari</span>
+            </div>
+            <div class="col">
+              <p class="display-1 fw-bold ijo" id="hours">0</p>
+              <span class="ijo">Jam</span>
+            </div>
+            <div class="col">
+              <p class="display-1 fw-bold ijo" id="min">0</p>
+              <span class="ijo">Menit</span>
+            </div>
+            <div class="col">
+              <p class="display-1 fw-bold ijo" id="sec">0</p>
+              <span class="ijo">Detik</span>
+            </div>
+          </div>
+        <?php endif; ?>
+      </div>
+      <div class="col-12 pt-5">
+        <?php if (isset($_SESSION['login']) && @$_SESSION['role'] == 'user') : ?>
+          <a id="keluar" class="btn btn-primary p-3 w-25" href="sistem/auth/logout.php">Keluar</a>
+        <?php endif; ?>
+        <a id="masuk" class="btn btn-primary p-3 w-25 d-none" href="user/pilih.php">Lanjut</a>
       </div>
     </div>
-    <div class="fixed-bottom text-center">
-      <img src="assets/img/musaba.png" class="p-2 p- mb-5" style="height: 100px;" alt="">
-      <img src="assets/img/techno.png" class="p-2 mb-5" style="height: 100px;" alt="">
-    </div>
   </div>
+
   <script src="main.js"></script>
-  <script>
-    let daysItem = document.querySelector("#days");
-    let hoursItem = document.querySelector("#hours");
-    let minItem = document.querySelector("#min");
-    let secItem = document.querySelector("#sec");
+  <?php if ($data->on_datetime == 1) : ?>
+    <script>
+      let daysItem = document.querySelector("#days");
+      let hoursItem = document.querySelector("#hours");
+      let minItem = document.querySelector("#min");
+      let secItem = document.querySelector("#sec");
 
 
-    let countDown = () => {
-      let futureDate = new Date("<?= $data->start_pemilos; ?>");
-      let currentDate = new Date();
-      let myDate = futureDate - currentDate;
-      //console.log(myDate);
+      let countDown = () => {
+        let futureDate = new Date("<?= $data->start_pemilos; ?>");
+        let currentDate = new Date();
+        let pemilos = <?= $data->pemilos ?>;
+        let myDate = futureDate - currentDate;
+        //console.log(myDate);
 
-      let days = Math.floor(myDate / 1000 / 60 / 60 / 24);
+        let days = Math.floor(myDate / 1000 / 60 / 60 / 24);
 
-      let hours = Math.floor(myDate / 1000 / 60 / 60) % 24;
+        let hours = Math.floor(myDate / 1000 / 60 / 60) % 24;
 
-      let min = Math.floor(myDate / 1000 / 60) % 60;
+        let min = Math.floor(myDate / 1000 / 60) % 60;
 
-      let sec = Math.floor(myDate / 1000) % 60;
+        let sec = Math.floor(myDate / 1000) % 60;
 
-      if (new Date(futureDate) > new Date()) {
-        daysItem.innerHTML = days;
-        hoursItem.innerHTML = hours;
-        minItem.innerHTML = min;
-        secItem.innerHTML = sec;
-      }
+        if (pemilos == 0) {
+          if (new Date(futureDate) > new Date()) {
+            daysItem.innerHTML = days;
+            hoursItem.innerHTML = hours;
+            minItem.innerHTML = min;
+            secItem.innerHTML = sec;
+          }
+        } else {
+          keluar.classList.add("d-none");
+          masuk.classList.remove("d-none");
+        }
 
-    }
+        var keluar = document.querySelector("#keluar");
+        var masuk = document.querySelector("#masuk");
 
-    countDown()
+        if (pemilos == 0) {
+          if (new Date(futureDate) < new Date()) {
+            keluar.classList.add("d-none");
+            masuk.classList.remove("d-none");
+          }
+        } else {
+          keluar.classList.add("d-none");
+          masuk.classList.remove("d-none");
+        }
+      };
 
-    setInterval(countDown, 1000)
-  </script>
+      countDown()
+
+      setInterval(countDown, 1000)
+    </script>
+  <?php endif; ?>
 </body>
 
 </html>

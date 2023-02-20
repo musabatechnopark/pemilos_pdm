@@ -24,10 +24,17 @@ include 'sidebar.php';
             <div class="col-lg-12">
                 <div class="card">
                     <div class="card-body">
-                        <h5 class="card-title">Data Calon</h5>
-                        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add">
-                            Tambah
-                        </button>
+                        <div class="row card-title">
+                            <h5 class="col-9">Data Calon</h5>
+                            <div class="col">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add">
+                                    Tambah
+                                </button>
+                                <a href="../sistem/admin/recapcalon.php" class="btn btn-secondary">
+                                    Rekap data calon
+                                </a>
+                            </div>
+                        </div>
                         <?= @$_SESSION['error_logut'];
                         unset($_SESSION['error_logut']) ?>
                         <table class="table datatable">

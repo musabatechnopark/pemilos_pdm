@@ -94,8 +94,8 @@
                                     }
                                 });
 
-                                setInterval(async function() {
-                                    const api = await fetch('http://127.0.0.1/pdm/frontend/sistem/admin/dashboard.php?type=json')
+                                async function getdata() {
+                                    const api = await fetch('http://192.168.202.168/pdm/frontend/sistem/admin/dashboard.php?type=json')
                                     const {
                                         data
                                     } = await api.json()
@@ -112,7 +112,29 @@
                                     chart.data.labels = hasil
                                     chart.data.datasets[0].data = suara
                                     chart.update();
-                                }, 300000);
+                                };
+
+                                getdata()
+
+                                setInterval(async function() {
+                                    const api = await fetch('http://192.168.202.168/pdm/frontend/sistem/admin/dashboard.php?type=json')
+                                    const {
+                                        data
+                                    } = await api.json()
+                                    var hasil = []
+                                    var suara = []
+                                    for (let i = 0; i < data.length; i++) {
+                                        hasil.push(data[i].nama)
+                                        suara.push(data[i].total)
+                                    }
+
+                                    // console.log(hasil)
+                                    // console.log(suara)
+
+                                    chart.data.labels = hasil
+                                    chart.data.datasets[0].data = suara
+                                    chart.update();
+                                }, 50000);
                             });
                         </script>
                         <!-- End Line Chart -->
@@ -153,30 +175,26 @@
     $(document).ready(function() {
         setInterval(function() {
             getData()
-        }, 300000)
+        }, 50000)
     })
 
     function getData() {
         $.ajax({
-            url: 'http://127.0.0.1/pdm/frontend/sistem/admin/dashboard.php?type=html',
+            url: 'http://192.168.202.168/pdm/frontend/sistem/admin/dashboard.php?type=html',
             type: 'GET',
             success: function(response) {
                 $("tbody").html(response);
             }
         })
     }
+
+    getData();
 </script>
 
 <!-- ======= Footer ======= -->
 <footer class="footer">
     <div class="copyright">
         &copy; Musaba Technopark
-    </div>
-    <div class="credits">
-        <!-- All the links in the footer should remain intact. -->
-        <!-- You can delete the links only if you purchased the pro version. -->
-        <!-- Licensing information: https://bootstrapmade.com/license/ -->
-        <!-- Purchase the pro version with working PHP/AJAX contact form: https://bootstrapmade.com/nice-admin-bootstrap-admin-html-template/ -->
     </div>
 </footer>
 <!-- End Footer -->

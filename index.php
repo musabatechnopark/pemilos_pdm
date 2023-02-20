@@ -1,5 +1,13 @@
 <?php
 include 'database/koneksi.php';
+$sql = "SELECT * FROM setting";
+
+$query = $db->query($sql);
+
+$data = $query->fetch_object();
+
+if ($data->pemilos != 1) return return_url('countdown.php');
+
 if (@!$_SESSION['login']) : ?>
 
     <!DOCTYPE html>
