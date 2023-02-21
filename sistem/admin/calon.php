@@ -3,6 +3,8 @@ include '../../database/koneksi.php';
 
 if (empty($_SESSION['login']) && $_SESSION['role'] != 'admin') return $_SESSION['error_logut'] = 'You not login' . redirect_back();
 
+use PhpOffice\PhpSpreadsheet\IOFactory;
+
 switch ($request['action']) {
     case 'add':
 
@@ -51,6 +53,41 @@ switch ($request['action']) {
             $_SESSION['message_error'] = "<strong>Error !,</strong>Data " . $data['nama'] . " Gagal Diedit" .
                 return_url('../../admin/calon.php');
         }
+
+        break;
+
+
+    case 'xlsx':
+
+        $file = $_FILES["file"]["name"];
+        $file_tmp = $_FILES["file"]["tmp_name"];
+
+        // Membaca file Excel menggunakan PhpSpreadsheet
+        $spreadsheet = IOFactory::load($file_tmp);
+        $worksheet = $spreadsheet->getActiveSheet();
+        $rows = $worksheet->toArray();
+
+        // Mengimpor data ke dalam tabel database
+        $columns = implode(",", $rows[0]);
+        $values = array();
+        for ($i = 1; $i < count($rows); $i++) {
+            $values[] = "('" . implode("','", $rows[$i]) . "')";
+        }
+        $values = implode(",", $values);
+
+        $sql = "INSERT INTO tb_calon ($columns) VALUES $values";
+        if (mysqli_query($db, $sql)) {
+            $_SESSION['message'] = "<strong>Success !,</strong>Data " . $data['nama'] . " Berhasil Ditambahkan" .
+                return_url('../../admin/calon.php');
+        } else {
+            $_SESSION['message_error'] = "<strong>Error !,</strong>Data " . $data['nama'] . " Gagal Ditambahkan" .
+                return_url('../../admin/calon.php');
+        }
+
+
+        mysqli_close($db);
+
+
 
         break;
     case 'delete':

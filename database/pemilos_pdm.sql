@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Feb 18, 2023 at 06:07 PM
+-- Generation Time: Feb 21, 2023 at 07:47 AM
 -- Server version: 8.0.32-0ubuntu0.22.04.2
 -- PHP Version: 8.1.2-1ubuntu2.10
 
@@ -39,7 +39,7 @@ CREATE TABLE `setting` (
 --
 
 INSERT INTO `setting` (`id`, `start_pemilos`, `pemilos`, `on_datetime`) VALUES
-(1, '2023-02-17 06:02:00', 1, 0);
+(1, '2023-02-21 17:00:00', 0, 1);
 
 -- --------------------------------------------------------
 
@@ -210,7 +210,11 @@ CREATE TABLE `tb_login` (
 
 INSERT INTO `tb_login` (`id`, `nbm`, `password`) VALUES
 (5, '123412341234567', '7c222fb2927d828af22f592134e8932480637c0d'),
-(6, '1234', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220');
+(6, '1234', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220'),
+(13, '12345', 'da39a3ee5e6b4b0d3255bfef95601890afd80709'),
+(14, '123', 'da39a3ee5e6b4b0d3255bfef95601890afd80709'),
+(15, '123456', '7110eda4d09e062aa5e4a390b0a572ac0d2c0220'),
+(16, '11223344', 'b986415c93241513d33d01fcf532a6c47ac4f3ee');
 
 -- --------------------------------------------------------
 
@@ -232,7 +236,11 @@ CREATE TABLE `tb_pengguna` (
 
 INSERT INTO `tb_pengguna` (`id`, `nbm`, `nama`, `cabang`, `pemilos`) VALUES
 (125, '123412341234567', 'King Zuy', 'Kretek', 'Belum'),
-(129, '1234', 'Zulkarnain', 'Budidaya', 'Sudah');
+(129, '1234', 'Zulkarnain', 'Budidaya', 'Belum'),
+(138, '12345', 'alip supriadi', 'kono kae', 'Belum'),
+(139, '123', 'Yoga Yudi', 'sewon', 'Belum'),
+(140, '123456', 'Alip Yudianto', 'imogiri', 'Sudah'),
+(141, '11223344', 'siswa musaba', 'kretek', 'Sudah');
 
 -- --------------------------------------------------------
 
@@ -246,25 +254,6 @@ CREATE TABLE `tb_suara` (
   `calon_id` int NOT NULL,
   `jumlah` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
-
---
--- Dumping data for table `tb_suara`
---
-
-INSERT INTO `tb_suara` (`id`, `pengguna_id`, `calon_id`, `jumlah`) VALUES
-(1, 129, 2, 1),
-(2, 129, 3, 1),
-(3, 129, 6, 1),
-(4, 129, 7, 1),
-(5, 129, 10, 1),
-(6, 129, 11, 1),
-(7, 129, 14, 1),
-(8, 129, 15, 1),
-(9, 129, 18, 1),
-(10, 129, 19, 1),
-(11, 129, 22, 1),
-(12, 129, 23, 1),
-(13, 129, 27, 1);
 
 --
 -- Indexes for dumped tables
@@ -336,19 +325,19 @@ ALTER TABLE `tb_calon`
 -- AUTO_INCREMENT for table `tb_login`
 --
 ALTER TABLE `tb_login`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `tb_pengguna`
 --
 ALTER TABLE `tb_pengguna`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=142;
 
 --
 -- AUTO_INCREMENT for table `tb_suara`
 --
 ALTER TABLE `tb_suara`
-  MODIFY `id` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
+  MODIFY `id` int NOT NULL AUTO_INCREMENT;
 
 --
 -- Constraints for dumped tables

@@ -27,7 +27,7 @@ include 'sidebar.php';
                         <div class="row card-title">
                             <h5 class="col-9">Data Calon</h5>
                             <div class="col">
-                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#add">
+                                <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#pilihan">
                                     Tambah
                                 </button>
                                 <a href="../sistem/admin/recapcalon.php" class="btn btn-secondary">
@@ -88,6 +88,53 @@ include 'sidebar.php';
                                             <button type="button" class="btn btn-danger" data-bs-toggle="modal" data-bs-target="#delete-<?= $row['id'] ?>">
                                                 Delete
                                             </button>
+
+                                            <div class="modal modal fade" id="pilihan" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <form action="../sistem/admin/user.php" method="post">
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Pilih Metode</h1>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <p>Pilih metode untuk menambah data user : </p>
+                                                                <div class="text-center">
+                                                                    <a href="" data-bs-toggle="modal" data-bs-target="#file2">File</a>
+                                                                    <hr>
+                                                                    <a href="" data-bs-toggle="modal" data-bs-target="#add">Manual</a>
+                                                                </div>
+
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
+
+                                            <div class="modal modal-lg fade" id="file2" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                <div class="modal-dialog modal-dialog-centered">
+                                                    <div class="modal-content">
+                                                        <form action="../sistem/admin/calon.php" method="post" enctype="multipart/form-data">
+                                                            <div class="modal-header">
+                                                                <h1 class="modal-title fs-5" id="exampleModalLabel">Tambah Calon</h1>
+                                                                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                                                            </div>
+                                                            <div class="modal-body">
+                                                                <div class="row mb-3"> <label for="inputNumber" class="col-sm-2 col-form-label">File Upload</label>
+                                                                    <div class="col-sm-10"> <input class="form-control" name="file" type="file" id="formFile"></div>
+                                                                </div>
+                                                            </div>
+                                                            <div class="modal-footer">
+                                                                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#pilihan">Back</button>
+                                                                <button type="submit" class="btn btn-primary" name="action" value="xlsx">Tambah</button>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
 
                                             <!-- Modal -->
                                             <div class="modal modal-lg fade" id="delete-<?= $row['id'] ?>" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
@@ -194,21 +241,21 @@ include 'sidebar.php';
                                                             </div>
                                                     </div>
                                                     <div class="modal-footer">
-                                                        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                                                        <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#pilihan">Back</button>
                                                         <button type="submit" class="btn btn-primary" name="action" value="add">Tambah</button>
                                                     </div>
                                                     </form>
                                                 </div>
                                             </div>
+
+                                        </td>
+                                    </tr>
+                                <?php endwhile; ?>
+                            </tbody>
+                        </table>
                     </div>
-                    </td>
-                    </tr>
-                <?php endwhile; ?>
-                </tbody>
-                </table>
                 </div>
             </div>
-        </div>
         </div>
     </section>
 </main>
