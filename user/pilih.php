@@ -171,7 +171,7 @@ if ($_SESSION['login'] && $_SESSION['role'] == 'user') :
                     var number = parseInt(element.textContent);
 
                     if (a.value == 0) {
-                        if (number >= 13) {
+                        if (number >= Number(<?= $data->max_pilih ?>)) {
                             return Swal.fire('anda sudah memilih 13')
                         } else {
                             b.classList.add("active");

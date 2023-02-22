@@ -8,6 +8,7 @@ $query = $db->query($sql);
 
 $data = $query->fetch_object();
 
+if ($data->pemilos == 1) return return_url('index.php');
 ?>
 
 <!DOCTYPE html>
@@ -55,9 +56,10 @@ $data = $query->fetch_object();
       </div>
       <div class="col-12 pt-5">
         <?php if (isset($_SESSION['login']) && @$_SESSION['role'] == 'user') : ?>
-          <a id="keluar" class="btn btn-primary p-3 w-25" href="sistem/auth/logout.php">Keluar</a>
+          <a id="keluar" class="btn btn-primary p-3 w-25 d-none" href="sistem/auth/logout.php">Keluar</a>
+          <a id="masuk" class="btn btn-primary p-3 w-25 d-none" href="user/pilih.php">Lanjut</a>
         <?php endif; ?>
-        <a id="masuk" class="btn btn-primary p-3 w-25 d-none" href="user/pilih.php">Lanjut</a>
+        <a id="login" class="btn btn-primary p-3 w-25 d-none" href="index.php">Login</a>
       </div>
     </div>
   </div>
@@ -69,12 +71,15 @@ $data = $query->fetch_object();
       let hoursItem = document.querySelector("#hours");
       let minItem = document.querySelector("#min");
       let secItem = document.querySelector("#sec");
+      let keluar = document.querySelector("#keluar");
+      let masuk = document.querySelector("#masuk");
+      let login = document.querySelector("#login");
 
 
-      let countDown = () => {
+      let countDown = async () => {
         let futureDate = new Date("<?= $data->start_pemilos; ?>");
         let currentDate = new Date();
-        let pemilos = <?= $data->pemilos ?>;
+        let pemilos = '<?= $data->pemilos ?>';
         let myDate = futureDate - currentDate;
         //console.log(myDate);
 
@@ -86,33 +91,24 @@ $data = $query->fetch_object();
 
         let sec = Math.floor(myDate / 1000) % 60;
 
-        if (pemilos == 0) {
-          if (new Date(futureDate) > new Date()) {
-            daysItem.innerHTML = days;
-            hoursItem.innerHTML = hours;
-            minItem.innerHTML = min;
-            secItem.innerHTML = sec;
-          }
+        if (new Date(futureDate) > new Date()) {
+          daysItem.innerHTML = days;
+          hoursItem.innerHTML = hours;
+          minItem.innerHTML = min;
+          secItem.innerHTML = sec;
+
+          keluar.classList.remove('d-none');
+
         } else {
-          keluar.classList.add("d-none");
-          masuk.classList.remove("d-none");
+          <?php if (!isset($_SESSION['login']) && @$_SESSION['role'] == 'user') : ?>
+            login.classList.remove('d-none');
+          <?php endif; ?>
+          masuk.classList.remove('d-none');
+          var api = await fetch('http://127.0.0.1/pdm/frontend/sistem/admin/setting.php?action=start_otomatis&id=1&data=1')
+          var data = await api.json()
         }
 
-        var keluar = document.querySelector("#keluar");
-        var masuk = document.querySelector("#masuk");
-
-        if (pemilos == 0) {
-          if (new Date(futureDate) < new Date()) {
-            keluar.classList.add("d-none");
-            masuk.classList.remove("d-none");
-          }
-        } else {
-          keluar.classList.add("d-none");
-          masuk.classList.remove("d-none");
-        }
       };
-
-      countDown()
 
       setInterval(countDown, 1000)
     </script>

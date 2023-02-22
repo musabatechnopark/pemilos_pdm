@@ -37,7 +37,7 @@ include 'sidebar.php';
     <section class="section">
         <div class="row">
             <div class="row">
-                <div class="col-lg-8">
+                <div class="col-lg-12">
                     <?php
                     if (@$_SESSION['message']) : ?>
                         <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -144,6 +144,25 @@ include 'sidebar.php';
                                 </select>
                             </div>
                         </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-4">
+                <div class="card">
+                    <div class="card-body">
+                        <div class="btn-toolbar justify-content-between" role="toolbar" aria-label="Toolbar with button groups">
+                            <h5 class="card-title">Maks Pilihan</h5>
+                        </div>
+                        <form action="../sistem/admin/setting.php" method="POST">
+                            <div class="row">
+                                <div class="col-lg-10">
+                                    <input type="text" name="data" class="form-control" value="<?= $data->max_pilih ?>">
+                                </div>
+                                <div class="col-lg-2">
+                                    <button type="submit" name="action" value="max_pilih" class="btn btn-primary">Kirim</button>
+                                </div>
+                            </div>
+                        </form>
                     </div>
                 </div>
             </div>
