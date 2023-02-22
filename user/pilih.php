@@ -13,6 +13,11 @@ if ($_SESSION['login'] && $_SESSION['role'] == 'user') :
     if ($_SESSION['pemilos'] == 'Sudah') {
         return return_url('sudahpilih.php');
     }
+
+    $query = "SELECT * FROM tb_calon";
+    $result = mysqli_query($db, $query);
+
+    $jumlah = mysqli_num_rows($result);
 ?>
 
     <!DOCTYPE html>
@@ -30,7 +35,7 @@ if ($_SESSION['login'] && $_SESSION['role'] == 'user') :
     <body>
         <div class="container">
 
-            <h2 class="mt-5 ijo">Pilihlah 13 dari 80 kandidat di bawah <?= $data->pemilos; ?></h2>
+            <h2 class="mt-5 ijo">Pilihlah 13 dari <?= $jumlah; ?> kandidat di bawah</h2>
 
             <form action="../sistem/voting/voting.php" method="post">
                 <!-- awal tempat pilih -->
