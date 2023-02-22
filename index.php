@@ -84,6 +84,11 @@ if (@!$_SESSION['login']) : ?>
                 </div>
             </div>
         </section>
+
+        <div style="display: none;" id="waktu"></div>
+        <input type="hidden" id="id" value="<?= $data->id; ?>">
+        <input id="start_time" type="hidden" value="<?= $data->start_pemilos; ?>">
+
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js" integrity="sha384-w76AqPfDkMBDXo30jS1Sgez6pr3x5MlQ1ZAGC+nuZB+EYdgRZgiwxhTBTkF7CXvN" crossorigin="anonymous"></script>
         <script>
             const name = document.querySelector(".name");
@@ -108,6 +113,7 @@ if (@!$_SESSION['login']) : ?>
                 pass.classList.remove("focus");
             });
         </script>
+
     </body>
 
     <script type="text/javascript">
@@ -121,8 +127,8 @@ if (@!$_SESSION['login']) : ?>
             var menit = date.getMinutes(); // ambil menit
             var detik = date.getSeconds(); // ambil detik
 
-            var start = document.getElementById("start_time").innerHTML
-            var id = document.getElementById("id").value
+            var start = document.getElementById("start_time").value;
+            var id = document.getElementById("id").value;
 
             // tambahkan angka 0 di depan jika angka hanya satu digit
             if (bulan < 10) bulan = "0" + bulan;
@@ -136,11 +142,8 @@ if (@!$_SESSION['login']) : ?>
             if (new Date(waktu) > new Date(start)) {
                 var api = await fetch('http://127.0.0.1/pdm/frontend/sistem/admin/setting.php?action=start_otomatis&id=' + id + '&data=1')
                 var data = await api.json()
-
-                console.log(data)
             }
 
-            console.log(waktu, '\n', start)
         }
 
         setInterval(tampilkanWaktu, 1000); // panggil fungsi tampilkanWaktu setiap 1 detik
